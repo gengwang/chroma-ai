@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { siteMetadata } from '@/app/data/siteMetadata';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -13,10 +14,7 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
-  title: "ChromaAI",
-  description: "Chroma AI: AI-Powered Color Palette Generator",
-};
+export const metadata: Metadata = siteMetadata;
 
 export default function RootLayout({
   children,

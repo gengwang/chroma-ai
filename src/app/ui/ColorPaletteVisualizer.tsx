@@ -3,6 +3,8 @@ import KeywordInput from "./KeywordInput";
 import ModelSelector from "./ModelSelector";
 import { Suspense } from "react";
 import ClassicTiles from "./visualizers/ClassicTiles";
+import Tree from "./visualizers/Tree";
+import { siteMetadata } from '@/app/data/siteMetadata';
 
 function ColorPaletteLoader() {
     return (
@@ -33,8 +35,8 @@ export default async function ColorPaletteVisualizer({
 		<div>
 			<div className="flex items-center space-x-4">
 				<div className="flex-grow flex items-baseline space-x-4 text-gray-600 dark:text-gray-400">
-					<h1 className="text-3xl font-bold">ChromaAI</h1>
-					<p className="text-lg">Generate color palettes from a keyword prompt using a language model</p>
+					<h1 className="text-3xl font-bold">{siteMetadata.title}</h1>
+					<p className="text-lg">{siteMetadata.description}</p>
 					<p className="ml-auto"><a href="https://github.com/gengwang/chroma-ai" className="text-blue-500 hover:underline">Source code</a></p>
 				</div>
 			</div>
@@ -49,6 +51,7 @@ export default async function ColorPaletteVisualizer({
             </div>
             
 			<ClassicTiles colorPalettes={colorPalettes} />
+			{/* <Tree colorPalettes={colorPalettes} keyword={keyword} /> */}
 		</div>
 	);
 }
