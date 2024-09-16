@@ -9,8 +9,8 @@ interface ModelOption {
 }
 
 const models: ModelOption[] = [
-    { value: "mistralai/Mixtral-8x7B-Instruct-v0.1", label: "Mixtral-8x7B-Instruct-v0.1" },
 	{ value: "mistralai/Mistral-7B-Instruct-v0.3", label: "Mistral-7B-Instruct-v0.3" },
+    { value: "mistralai/Mixtral-8x7B-Instruct-v0.1", label: "Mixtral-8x7B-Instruct-v0.1" },
     { value: "mistralai/Mistral-Nemo-Instruct-2407", label: "Mistral-Nemo-Instruct-2407" },
 ];
 

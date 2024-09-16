@@ -81,9 +81,9 @@ async function chatCompletion(message, model) {
             return parsedContent;
         } catch (parseError) {
             console.error('Error parsing JSON:', parseError);
-            const contentInfo = getContentType(sanitizedText);
+            // const contentInfo = getContentType(sanitizedText);
             // console.log(`Debug - Content Info (failed to parse as JSON):\nType: ${contentInfo.type}\nDetails: ${contentInfo.details}`);
-            return sanitizedText;
+            throw new Error('Failed to parse JSON response');
         }
     } catch (error) {
         console.error('Error in chat completion:', error);
@@ -91,7 +91,9 @@ async function chatCompletion(message, model) {
     }
 }
 
-async function getColorPalettes(model, keyword = "Star Trek") {
+async function getColorPalettes(model = "mistralai/Mistral-Nemo-Instruct-2407", keyword = "Star Trek") {
+    const startTime = Date.now();
+    console.log(`getColorPalettes called with model: ${model}, keyword: ${keyword}`);
     let themeNamesPrompt;
     try {
         themeNamesPrompt = `Create a list of 5 different theme names based on ${keyword}. Make sure the output is a valid JSON array of strings, where each theme object is in the following format: { "theme": "Theme Name"}, and the array is in the following format: [{ "theme": "Theme Name"}, { "theme": "Theme Name"}]. Make sure the JSON array is wrapped in square brackets. Do not include anything else in the response, just the output.` + delimiter;
@@ -124,18 +126,18 @@ async function getColorPalettes(model, keyword = "Star Trek") {
             colorPalettes.push(paletteResponse);
         }
 
+        const elapsedTime = Date.now() - startTime;
+        console.log(`getColorPalettes returning successfully with ${colorPalettes.length} palettes. Elapsed time: ${elapsedTime}ms`);
         return colorPalettes;
     } catch (error) {
+        const elapsedTime = Date.now() - startTime;
         console.error("Error generating color palettes:", error);
-        if (themeNamesPrompt === undefined) {
-            return [{ "theme": "Error: Theme Names Prompt Undefined", "colors": ['#FF0000', '#FF0000', '#FF0000', '#FF0000', '#FF0000', '#FF0000'] }];
-        } else if (themeNamesPrompt && themeNamesPrompt.includes("Create a list of 5 different theme names")) {
-            return [{ "theme": "Error: Theme Names Generation Failed", "colors": ['#FF0000', '#FF0000', '#FF0000', '#FF0000', '#FF0000', '#FF0000'] }];
-        } else if (userInput2 && userInput2.includes("Create a themed color palette")) {
-            return [{ "theme": "Error: Color Palette Generation Failed", "colors": ['#FF0000', '#FF0000', '#FF0000', '#FF0000', '#FF0000', '#FF0000'] }];
-        } else {
-            return [{ "theme": "Unknown Error", "colors": ['#FF0000', '#FF0000', '#FF0000', '#FF0000', '#FF0000', '#FF0000'] }];
-        }
+        console.log(`getColorPalettes throwing error: ${error.message}. Elapsed time: ${elapsedTime}ms`);
+        
+        return [{
+            theme: "Error: " + error.message,
+            colors: ['#FF0000', '#FF0000', '#FF0000', '#FF0000', '#FF0000', '#FF0000']
+        }];
     }
 }
 

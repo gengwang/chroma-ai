@@ -20,7 +20,7 @@ export type ColorPalette = {
 };
 
 export default async function ColorPaletteVisualizer({
-	model = "mistralai/Mistral-Nemo-Instruct-2407",
+	model = "mistralai/Mistral-7B-Instruct-v0.3",
     keyword = "Star Trek",
 }: {
 	model: string;
@@ -34,7 +34,7 @@ export default async function ColorPaletteVisualizer({
 				<div className="flex-grow flex items-baseline space-x-4 text-gray-600 dark:text-gray-400">
 					<h1 className="text-3xl font-bold">ChromaAI</h1>
 					<p className="text-lg">Generate color palettes from a keyword prompt using a language model</p>
-					<p className="ml-auto"><a href="https://github.com/matt-harvey/chroma-ai" className="text-blue-500 hover:underline">Source code</a></p>
+					<p className="ml-auto"><a href="https://github.com/gengwang/chroma-ai" className="text-blue-500 hover:underline">Source code</a></p>
 				</div>
 			</div>
 
@@ -47,41 +47,39 @@ export default async function ColorPaletteVisualizer({
                 <ModelSelector model={model} />
             </div>
             
-			<ul style={{ listStyleType: "none", padding: 0 }}>
-				{colorPalettes.map((palette, index) => (
-					<li key={index} style={{ marginBottom: "20px" }}>
-						<div className="text-lg font-bold">{palette.theme}</div>
-						<ul
-							style={{
-								display: "flex",
-								flexWrap: "wrap",
-								gap: "1px",
-								listStyleType: "none",
-								padding: 0,
-							}}
-						>
-							{palette.colors.map((color, colorIndex) => (
-								<li
-									key={colorIndex}
-									style={{
-										backgroundColor: color,
-										flex: 1,
-										height: '2rem',
-										display: 'flex',
-										alignItems: 'center',
-										justifyContent: 'center',
-										color: getContrastColor(color),
-										borderRadius: '0.25rem', // Add rounded corners
-										margin: '0.125rem', // Add a small margin to separate the rounded corners
-									}}
-								>
-									{/* {color} */}
-								</li>
-							))}
-						</ul>
-					</li>
-				))}
-			</ul>
+			{colorPalettes.map((palette, index) => (
+				<div key={index}>
+					<h3>{palette.theme}</h3>
+					<ul
+						style={{
+							display: "flex",
+							flexWrap: "wrap",
+							gap: "1px",
+							listStyleType: "none",
+							padding: 0,
+						}}
+					>
+						{palette.colors && palette.colors.map((color, colorIndex) => (
+							<li
+								key={colorIndex}
+								style={{
+									backgroundColor: color,
+									flex: 1,
+									height: '2rem',
+									display: 'flex',
+									alignItems: 'center',
+									justifyContent: 'center',
+									color: getContrastColor(color),
+									borderRadius: '0.25rem',
+									margin: '0.125rem',
+								}}
+							>
+								{/* {color} */}
+							</li>
+						))}
+					</ul>
+				</div>
+			))}
 		</div>
 	);
 }

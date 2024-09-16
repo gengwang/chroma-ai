@@ -8,8 +8,9 @@ describe('getColorPalettes', () => {
     // const keyword = 'Eternal flame' // error
     // const keyword = 'For better or worse' // error
     // const keyword = '25 basis points' // error
-    // const keyword = 'Serendipitous encounter' // error
+    // const keyword = 'Serendipity' // error
 
+    // const keyword = 'Serendipitous encounter'
     // const model = 'mistralai/Mixtral-8x7B-Instruct-v0.1'
     // const model = 'mistralai/Mistral-Nemo-Instruct-2407'
     // const keyword = 'Star Trek'
