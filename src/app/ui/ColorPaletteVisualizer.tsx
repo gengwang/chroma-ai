@@ -2,6 +2,7 @@ import { getColorPalettes } from "../api/get-colors";
 import KeywordInput from "./KeywordInput";
 import ModelSelector from "./ModelSelector";
 import { Suspense } from "react";
+import ClassicTiles from "./visualizers/ClassicTiles";
 
 function ColorPaletteLoader() {
     return (
@@ -47,39 +48,7 @@ export default async function ColorPaletteVisualizer({
                 <ModelSelector model={model} />
             </div>
             
-			{colorPalettes.map((palette, index) => (
-				<div key={index}>
-					<h3>{palette.theme}</h3>
-					<ul
-						style={{
-							display: "flex",
-							flexWrap: "wrap",
-							gap: "1px",
-							listStyleType: "none",
-							padding: 0,
-						}}
-					>
-						{palette.colors && palette.colors.map((color, colorIndex) => (
-							<li
-								key={colorIndex}
-								style={{
-									backgroundColor: color,
-									flex: 1,
-									height: '2rem',
-									display: 'flex',
-									alignItems: 'center',
-									justifyContent: 'center',
-									color: getContrastColor(color),
-									borderRadius: '0.25rem',
-									margin: '0.125rem',
-								}}
-							>
-								{/* {color} */}
-							</li>
-						))}
-					</ul>
-				</div>
-			))}
+			<ClassicTiles colorPalettes={colorPalettes} />
 		</div>
 	);
 }
