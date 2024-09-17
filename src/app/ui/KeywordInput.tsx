@@ -36,15 +36,7 @@ const KeywordInput: React.FC<KeywordInputProps> = ({ initialKeyword }) => {
                         handleSubmit(e as unknown as React.FormEvent<HTMLFormElement>);
                     }
                 }}
-                style={{
-                    marginRight: '10px',
-                    color: '#ffffff',
-                    backgroundColor: '#333333',
-                    padding: '5px 10px',
-                    border: '1px solid #555555',
-                    borderRadius: '4px',
-                    width: '240px'
-                }}
+                className="mr-2.5 dark:bg-gray-800 dark:text-white py-1 px-2.5 border border-gray-600 rounded w-60"
             />
             {/* <button type="submit">Generate Palette</button> */}
         </form>

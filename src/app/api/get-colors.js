@@ -3,7 +3,6 @@
 
 import dotenv from 'dotenv';
 import { HfInference } from '@huggingface/inference';
-import { getContentType } from '../utils/utils'; //TODO: fix this import using @ notation.
 
 dotenv.config();
 

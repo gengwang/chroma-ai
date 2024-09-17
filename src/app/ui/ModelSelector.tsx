@@ -33,14 +33,7 @@ const ModelSelector: React.FC<ModelSelectorProps> = ({ model }) => {
 			<label htmlFor="modelSelect" className="mr-3 text-gray-900 dark:text-gray-100">Model</label>
 			<select
 				id="modelSelect"
-				style={{
-					marginBottom: "20px",
-					backgroundColor: "#333333",
-					color: "#ffffff",
-					padding: "5px 10px",
-					border: "1px solid #555555",
-					borderRadius: "4px",
-				}}
+				className="mb-5 dark:bg-gray-800 dark:text-white py-1 px-2.5 border border-gray-600 rounded"
 				value={model}
 				onChange={handleModelChange}
 			>
