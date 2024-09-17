@@ -18,7 +18,9 @@ const Footer: React.FC = () => {
           </Link>
         </div>
         <div className="text-sm text-gray-600 dark:text-gray-300">
-          Geng Wang @ 2024
+          <Link href="https://work.maohao.com" target="_portfolio" rel="noopener noreferrer">
+            Geng Wang @ 2024
+          </Link>
         </div>
       </div>
     </footer>

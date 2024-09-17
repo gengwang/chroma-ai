@@ -1,0 +1,62 @@
+{
+	"name": "star trek",
+	"model": "mistralai/Mistral-7B-Instruct-v0.3",
+	"timestamp": "2024-09-21T20:50:05Z",
+	"palettes": [
+	  {
+		"name": "Klingon Empire",
+		"colors": [
+		  "#FF4500",
+		  "#C69300",
+		  "#FF9900",
+		  "#99FF99",
+		  "#00C6FF",
+		  "#9900FF"
+		]
+	  },
+	  {
+		"name": "Romulan Star Empire",
+		"colors": [
+		  "#861313",
+		  "#A11B21",
+		  "#C82626",
+		  "#D52D2D",
+		  "#B91F1F",
+		  "#E23333"
+		]
+	  },
+	  {
+		"name": "Federation",
+		"colors": [
+		  "#FFC300",
+		  "#FFD700",
+		  "#008080",
+		  "#00FFFF",
+		  "#87CEEB",
+		  "#0000FF"
+		]
+	  },
+	  {
+		"name": "Borg Collective",
+		"colors": [
+		  "#660000",
+		  "#FF0000",
+		  "#0066CC",
+		  "#00CC66",
+		  "#0066FF",
+		  "#CC6666"
+		]
+	  },
+	  {
+		"name": "Vulcan Science Academy",
+		"colors": [
+		  "#228B22",
+		  "#6B8E23",
+		  "#483D8B",
+		  "#FFD700",
+		  "#A52A2A",
+		  "#FDF5C8"
+		]
+	  }
+	]
+  }

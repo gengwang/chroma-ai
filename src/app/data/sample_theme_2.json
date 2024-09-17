@@ -1,0 +1,62 @@
+{
+	"name": "star trek",
+	"model": "Mixtral-8x7B-Instruct-v0.1",
+	"timestamp": "2024-09-21T21:03:46Z",
+	"palettes": [
+	  {
+		"name": "Starfleet Adventures",
+		"colors": [
+		  "#E3F0FF",
+		  "#0071BD",
+		  "#FFD700",
+		  "#6C7A89",
+		  "#002F4B",
+		  "#FF5733"
+		]
+	  },
+	  {
+		"name": "The Final Frontier",
+		"colors": [
+		  "#D32F2F",
+		  "#9E9E9E",
+		  "#F5F5DC",
+		  "#212121",
+		  "#F44336",
+		  "#0D47A1"
+		]
+	  },
+	  {
+		"name": "Voyages Through Space",
+		"colors": [
+		  "#000066",
+		  "#660000",
+		  "#666699",
+		  "#996633",
+		  "#339999",
+		  "#CCCCCC"
+		]
+	  },
+	  {
+		"name": "The Galactic Federation",
+		"colors": [
+		  "#4E5361",
+		  "#5E5E63",
+		  "#82847E",
+		  "#C2C3C4",
+		  "#D8E2DC",
+		  "#F7F6F3"
+		]
+	  },
+	  {
+		"name": "Star Trek: Odyssey",
+		"colors": [
+		  "#000040",
+		  "#404080",
+		  "#8080C0",
+		  "#C0C0FF",
+		  "#FFFFFF",
+		  "#FF0000"
+		]
+	  }
+	]
+  }

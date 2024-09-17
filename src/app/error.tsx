@@ -16,15 +16,20 @@ export default function Error({
  
   const handleReset = () => {
     reset(); // Call the provided reset function
-    window.location.reload(); // Then force a full page reload
+    window.location.href = window.location.origin; // Navigate to the original URL without query parameters
   };
 
   return (
-    <div>
-      <h2>Something went wrong!</h2>
-      <button onClick={handleReset}>
-        Try again
-      </button>
+    <div className="flex items-center justify-center h-screen">
+      <div className="text-center">
+        <h2 className="text-lg mb-4">Sorry, something went wrong!</h2>
+        <button 
+          onClick={handleReset}
+          className="px-6 py-3 bg-blue-500 text-white text-lg font-semibold rounded-md hover:bg-blue-600 transition-colors"
+        >
+          Try again
+        </button>
+      </div>
     </div>
   )
 }
