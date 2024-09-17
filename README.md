@@ -17,8 +17,11 @@ Generate color palettes from a keyword prompt using a language model
 
 ## Takeaways
 
-- You drive the project, not the AI, which means:
+- The future is now.
+  - Human expertise remains crucial for direction-setting, effective planning, and divide-and-conquer between humans and AI.
+  - Success requires understanding both the overall vision and specific details. Human craftsmanship will not become obsolete.
+- The human (You) drives the project, not the AI, which means:
   - Be very clear and precise with your instructions. 
   - Break a large task into smaller prompts.
   - Look at the output with a critical eye.
-- Prompt engineering is an art; communicating with AI is similar to conversing with people: it requires practice, patience, and a willingness to refine your approach to achieve effective communication.
+- Prompt engineering is an art: like human conversation, effective AI communication demands practice, patience, and continuous refinement.

@@ -13,12 +13,12 @@ export type ColorPalette = {
 
 export default async function ColorPaletteVisualizer({
 	model = "mistralai/Mistral-7B-Instruct-v0.3",
-    keyword = "Star Trek",
+    keyword,
 }: {
 	model: string;
-    keyword: string;
+    keyword?: string;
 }) {
-	const colorPalettes: ColorPalette[] = await getColorPalettes(model, keyword) as ColorPalette[];
+	const colorPalettes: ColorPalette[] | null = keyword ? await getColorPalettes(model, keyword) as ColorPalette[] : null;
 
 	return (
 		<div>
@@ -35,11 +35,11 @@ export default async function ColorPaletteVisualizer({
             <br />
 			
             <div className="flex flex-grow space-x-6">
-                <KeywordInput initialKeyword={keyword} />
+                <KeywordInput initialKeyword={keyword || ''} />
                 <ModelSelector model={model} />
             </div>
             
-			<ClassicTiles colorPalettes={colorPalettes} />
+			{colorPalettes && <ClassicTiles colorPalettes={colorPalettes} />}
 			{/* <Tree colorPalettes={colorPalettes} keyword={keyword} /> */}
 		</div>
 	);

@@ -8,6 +8,13 @@ interface KeywordInputProps {
 }
 
 const KeywordInput: React.FC<KeywordInputProps> = ({ initialKeyword }) => {
+    const inputRef = React.useRef<HTMLInputElement>(null);
+
+    React.useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, []);
     const [keyword, setKeyword] = useState(initialKeyword);
     const router = useRouter();
 
@@ -27,6 +34,7 @@ const KeywordInput: React.FC<KeywordInputProps> = ({ initialKeyword }) => {
             <label htmlFor="keywordInput" className="mr-3 text-gray-900 dark:text-gray-100">Theme</label>
             <input
                 id="keywordInput"
+                ref={inputRef}
                 type="text"
                 value={keyword}
                 onChange={handleKeywordChange}
