@@ -4,6 +4,7 @@ export type ColorPalette = {
 };
 export type Theme = {
     name: string;
-    model: string;
+    model: string | null;
+    timestamp: string,
     palettes: ColorPalette[];
 };

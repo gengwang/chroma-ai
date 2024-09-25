@@ -1,11 +1,13 @@
 "use client";
 
 import { useActionState } from "react";
-import { useFormStatus } from "react-dom";
-import fetchColorThemes from "../api/get-colors2";
+import { useFormStatus, useFormState } from "react-dom";
+import fetchColorThemes from "../api/get-colors3";
 
 //TODO: Rewrite: https://nextjs.org/docs/pages/building-your-application/data-fetching/forms-and-mutations
 // now we can manually go to http://localhost:3000/theme/star-trek
+
+// TODO: Put default value: Star Trek; or disable submit until the keyword is filled
 
 const initialState = {
     message: "",
@@ -40,7 +42,7 @@ const GenForm = () => {
 	return (
 		<div>
 			<form action={formAction} className="flex flex-row items-center gap-4">
-				{/* <div>{state.message}</div> */}
+				{/* keyword */}
 				<div className="flex items-center">
 					<label
 						htmlFor="keyword"
@@ -56,7 +58,8 @@ const GenForm = () => {
 						className="dark:bg-gray-800 dark:text-white py-1 px-2.5 border border-gray-600 rounded mr-4"
 					/>
 				</div>
-				<div className="flex items-center">
+				{/* model */}
+				{/* <div className="flex items-center">
 					<label
 						htmlFor="model"
 						className="mr-3 text-gray-900 dark:text-gray-100"
@@ -69,7 +72,7 @@ const GenForm = () => {
 						className="dark:bg-gray-800 dark:text-white py-1 px-2.5 border border-gray-600 rounded"
 						style={{ height: "38px" }}
 					>
-						<option>
+						<option value="">
 							Unspecified
 						</option>
 						<option value="mistralai/Mistral-7B-Instruct-v0.3">
@@ -82,7 +85,7 @@ const GenForm = () => {
 							Mistral-Nemo-Instruct-2407
 						</option>
 					</select>
-				</div>
+				</div> */}
 				<SubmitButton />
 				<Loader />
 				{/* <p aria-live="polite" className="sr-only" role="status">

@@ -5,7 +5,7 @@ export default function Home() {
 		<>
 			<main>
 				<div style={{ textAlign: "center", marginTop: "20px" }}>
-					<GenForm />
+					< GenForm />
 				</div>
 			</main>
 		</>

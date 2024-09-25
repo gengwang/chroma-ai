@@ -1,6 +1,6 @@
-import { getAllColorThemes } from "@/app/api/mongodb-data";
+import { getAllColorThemes, getColorThemesByName } from "@/app/api/mongodb-data";
 import { Theme } from "@/app/api/types";
-import ClassicTiles from "@/app/components/visualizers/ClassicTiles2";
+import ClassicTiles from "@/app/components/visualizers/ClassicTiles";
 import React from "react";
 
 export default async function Page({ params }: { params: { name: string } }) {
@@ -12,19 +12,20 @@ export default async function Page({ params }: { params: { name: string } }) {
     //DEBUG
     // await new Promise(resolve => setTimeout(resolve, 2000));
     try {
-        result = await getAllColorThemes();
+        result = await getColorThemesByName(params.name);
     } catch (error) {
         console.error('Error fetching color palettes:', error);
     }
+	// console.log("result from mongodb::::", result);
     const themes: Theme[] = result ? JSON.parse(result.themes) : null;
 
     // console.log('---in [name]', themes);
 
-    const themeName = params.name.replace(/-/g, ' ').toLowerCase();
+    // // console.log('in name:', themeName);
 
-    // console.log('in name:', themeName);
+    // const matchedThemes = themes.filter((theme) => theme.name.toLocaleLowerCase() === themeName);
 
-    const matchedThemes = themes.filter((theme) => theme.name.toLocaleLowerCase() === themeName);
+	const matchedThemes = themes;
 
     return (
 			<>
