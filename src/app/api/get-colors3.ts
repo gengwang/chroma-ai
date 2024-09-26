@@ -1,12 +1,10 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { HfInference } from '@huggingface/inference';
 import { z } from "zod";
 // import { insertColorTheme } from './mongodb-data';
 import { ColorPalette, Theme } from './types';
-import { time } from 'console';
 import { insertColorTheme, colorThemeByNameExists } from './mongodb-data';
 
 const huggingFaceAccessToken = process.env.HUGGING_FACE_ACCESS_TOKEN;
@@ -68,7 +66,7 @@ async function chatCompletion(message: string, model: string | null = null) {
 			return;
 		}
 
-		let sanitizedText = sanitizeResponse(generated_text, delimiter);
+		const sanitizedText = sanitizeResponse(generated_text, delimiter);
 
 		// console.log("Debug - Sanitized text:", sanitizedText);
 
@@ -132,7 +130,7 @@ async function genColorTheme(keyword: string = "Star Trek", model: string | null
             "palettes": palettes
         };
     } catch (error: unknown) {
-        let errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
         timestamp = new Date().toISOString();
         return {
             "name": keyword,

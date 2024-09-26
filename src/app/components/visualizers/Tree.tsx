@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ColorPalette } from '../ColorPaletteVisualizer';
+import { ColorPalette } from '@/app/api/types';
 import * as Plot from "@observablehq/plot";
 // import {tree, cluster} from 'd3';
 
@@ -23,11 +23,11 @@ const Tree: React.FC<TreeProps> = ({ colorPalettes, keyword }) => {
         return colorPalettes.flatMap(palette => 
             palette.colors?.length ? 
                 palette.colors.map(color => ({
-                    name: `${keyword}/${palette.theme}/${color}`,
+                    name: `${keyword}/${palette.name}/${color}`,
                     size: null
                 })) : 
                 [{
-                    name: `${keyword}/${palette.theme}/No colors available`,
+                    name: `${keyword}/${palette.name}/No colors available`,
                     size: null
                 }]
         );

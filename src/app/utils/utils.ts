@@ -1,4 +1,9 @@
-export function getContentType(content) {
+// Define a type for the elements of the array, modify as needed
+type ContentElement = string | number | object | null; // You can add more types as necessary
+
+type ContentType = ContentElement | ContentElement[]; // Union type that can be a single item or an array of items
+
+export function getContentType(content: ContentType) {
     if (Array.isArray(content)) {
         const firstItem = content.length > 0 ? JSON.stringify(content[0]).slice(0, 50) : 'empty array';
         return {
@@ -31,4 +36,3 @@ export function getContrastColor(hexColor: string) {
     const yiq = (r * 299 + g * 587 + b * 114) / 1000;
     return yiq >= 128 ? "black" : "white";
 }
-

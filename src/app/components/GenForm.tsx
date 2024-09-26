@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import { useFormStatus, useFormState } from "react-dom";
+import { useFormStatus } from "react-dom";
 import fetchColorThemes from "../api/get-colors3";
 
 //TODO: Rewrite: https://nextjs.org/docs/pages/building-your-application/data-fetching/forms-and-mutations

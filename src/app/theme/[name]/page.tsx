@@ -1,4 +1,4 @@
-import { getAllColorThemes, getColorThemesByName } from "@/app/api/mongodb-data";
+import { getColorThemesByName } from "@/app/api/mongodb-data";
 import { Theme } from "@/app/api/types";
 import ClassicTiles from "@/app/components/visualizers/ClassicTiles";
 import React from "react";
