@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
 export const siteMetadata: Metadata = {
-	title: "ChromaAI",
-	description: "AI-powered tool to generate color palettes from text prompts",
+	title: "chroma-ai",
+	description: "Generate color themes from text prompts",
 };
