@@ -1,0 +1,1211 @@
+[{
+  "name": "Klingon Empire",
+  "colors": [
+    "#FF4500",
+    "#C69300",
+    "#FF9900",
+    "#99FF99",
+    "#00C6FF",
+    "#9900FF"
+  ]
+},
+{
+  "name": "Romulan Star Empire",
+  "colors": [
+    "#861313",
+    "#A11B21",
+    "#C82626",
+    "#D52D2D",
+    "#B91F1F",
+    "#E23333"
+  ]
+},
+{
+  "name": "Federation",
+  "colors": [
+    "#FFC300",
+    "#FFD700",
+    "#008080",
+    "#00FFFF",
+    "#87CEEB",
+    "#0000FF"
+  ]
+},
+{
+  "name": "Borg Collective",
+  "colors": [
+    "#660000",
+    "#FF0000",
+    "#0066CC",
+    "#00CC66",
+    "#0066FF",
+    "#CC6666"
+  ]
+},
+{
+  "name": "Vulcan Science Academy",
+  "colors": [
+    "#228B22",
+    "#6B8E23",
+    "#483D8B",
+    "#FFD700",
+    "#A52A2A",
+    "#FDF5C8"
+  ]
+},
+{
+  "name": "Starfleet Adventures",
+  "colors": [
+    "#E3F0FF",
+    "#0071BD",
+    "#FFD700",
+    "#6C7A89",
+    "#002F4B",
+    "#FF5733"
+  ]
+},
+{
+  "name": "The Final Frontier",
+  "colors": [
+    "#D32F2F",
+    "#9E9E9E",
+    "#F5F5DC",
+    "#212121",
+    "#F44336",
+    "#0D47A1"
+  ]
+},
+{
+  "name": "Voyages Through Space",
+  "colors": [
+    "#000066",
+    "#660000",
+    "#666699",
+    "#996633",
+    "#339999",
+    "#CCCCCC"
+  ]
+},
+{
+  "name": "The Galactic Federation",
+  "colors": [
+    "#4E5361",
+    "#5E5E63",
+    "#82847E",
+    "#C2C3C4",
+    "#D8E2DC",
+    "#F7F6F3"
+  ]
+},
+{
+  "name": "Star Trek: Odyssey",
+  "colors": [
+    "#000040",
+    "#404080",
+    "#8080C0",
+    "#C0C0FF",
+    "#FFFFFF",
+    "#FF0000"
+  ]
+},
+{
+  "name": "Enterprise",
+  "colors": [
+    "#003049",
+    "#0A58A6",
+    "#1E88E5",
+    "#2196F3",
+    "#4CAF50",
+    "#FFC107"
+  ]
+},
+{
+  "name": "Galaxy",
+  "colors": [
+    "#000066",
+    "#330033",
+    "#663366",
+    "#990099",
+    "#CC00CC",
+    "#FF33FF"
+  ]
+},
+{
+  "name": "Vulcan",
+  "colors": [
+    "#1C1C1C",
+    "#545454",
+    "#787878",
+    "#B3B3B3",
+    "#E6E6E6",
+    "#FFFFFF"
+  ]
+},
+{
+  "name": "Romulan",
+  "colors": [
+    "#140412",
+    "#210c1a",
+    "#311724",
+    "#421d30",
+    "#53233b",
+    "#642847"
+  ]
+},
+{
+  "name": "Klingon",
+  "colors": [
+    "#8B0000",
+    "#228B22",
+    "#00008B",
+    "#8B008B",
+    "#FFD700",
+    "#FF0000"
+  ]
+},
+{
+  "name": "October Harvest",
+  "colors": [
+    "#FFD700",
+    "#E37A5C",
+    "#D9534F",
+    "#C04039",
+    "#A5302F",
+    "#8B2A22"
+  ]
+},
+{
+  "name": "Autumn Sunset",
+  "colors": [
+    "#FFD700",
+    "#FFA07A",
+    "#E65100",
+    "#C04000",
+    "#9C2500",
+    "#7F3C00"
+  ]
+},
+{
+  "name": "Pumpkin Spice",
+  "colors": [
+    "#FFD700",
+    "#FFA07A",
+    "#FDCF47",
+    "#C88A6C",
+    "#B76B3F",
+    "#E6A93C"
+  ]
+},
+{
+  "name": "Crimson Leaves",
+  "colors": [
+    "#C73A4E",
+    "#99243C",
+    "#7F2C3A",
+    "#68232F",
+    "#541E25",
+    "#40171A"
+  ]
+},
+{
+  "name": "Moonlit Hollow",
+  "colors": [
+    "#DCDCDC",
+    "#BDBDBD",
+    "#9E9E9E",
+    "#888888",
+    "#757575",
+    "#616161"
+  ]
+},
+{
+  "name": "Emerald Enchantment",
+  "colors": [
+    "#50C878",
+    "#C7EFE4",
+    "#B2DFDB",
+    "#99FF99",
+    "#7FFF00",
+    "#60C760"
+  ]
+},
+{
+  "name": "Evergreen Elegance",
+  "colors": [
+    "#3C7837",
+    "#508B32",
+    "#223133",
+    "#486341",
+    "#688353",
+    "#7B9E62"
+  ]
+},
+{
+  "name": "Lush Forest Mint",
+  "colors": [
+    "#9ECBE1",
+    "#AED581",
+    "#C7EFCF",
+    "#B9F6CA",
+    "#93D9B5",
+    "#75C3A2"
+  ]
+},
+{
+  "name": "Jewel Box Gemstone",
+  "colors": [
+    "#E74C3C",
+    "#E67E22",
+    "#E69633",
+    "#F9DC3E",
+    "#F0F8FF",
+    "#A64D79"
+  ]
+},
+{
+  "name": "Mystic Emerald Moonlight",
+  "colors": [
+    "#9EC5CC",
+    "#7CAF7F",
+    "#54A154",
+    "#36923F",
+    "#257E24",
+    "#1C5A10"
+  ]
+},
+{
+  "name": "Lee's Sunset Serenade",
+  "colors": [
+    "#FFD700",
+    "#FFA07A",
+    "#F29F4C",
+    "#E6683D",
+    "#D6485B",
+    "#9932CC"
+  ]
+},
+{
+  "name": "Lee's Midnight Marvel",
+  "colors": [
+    "#343A40",
+    "#4E545A",
+    "#5B6268",
+    "#6C737A",
+    "#7E868B",
+    "#929DA2"
+  ]
+},
+{
+  "name": "Lee's Autumn Aura",
+  "colors": [
+    "#FFD700",
+    "#FFB90F",
+    "#FFA07A",
+    "#E65C00",
+    "#C04000",
+    "#8B4513"
+  ]
+},
+{
+  "name": "Lee's Oceanic Oasis",
+  "colors": [
+    "#66B2FF",
+    "#B2FFD2",
+    "#FFF1B2",
+    "#FFD299",
+    "#B2FFB2",
+    "#66B2FF"
+  ]
+},
+{
+  "name": "Lee's Spring Blossom",
+  "colors": [
+    "#FDC885",
+    "#FFEFD1",
+    "#B6D1E2",
+    "#C7C7D2",
+    "#B9A5AF",
+    "#E9D6CB"
+  ]
+},
+{
+  "name": "Leap Luminance",
+  "colors": [
+    "#FFD69D",
+    "#D9D6FF",
+    "#A7FFEB",
+    "#F0FFA0",
+    "#B2FFD1",
+    "#F9F5D1"
+  ]
+},
+{
+  "name": "Future Fusion",
+  "colors": [
+    "#FFE5FF",
+    "#C7DFFF",
+    "#F2FFA8",
+    "#F5F5DC",
+    "#AED6F1",
+    "#F8B1D9"
+  ]
+},
+{
+  "name": "Neon Nova",
+  "colors": [
+    "#FF6347",
+    "#FFB300",
+    "#00FFC6",
+    "#007AFF",
+    "#FF00C6",
+    "#FF00FF"
+  ]
+},
+{
+  "name": "Radiant Progress",
+  "colors": [
+    "#FFD700",
+    "#FFE599",
+    "#FCD202",
+    "#FFE6AC",
+    "#FFF7B6",
+    "#E7FFEC"
+  ]
+},
+{
+  "name": "Electric Horizon",
+  "colors": [
+    "#FFEB3B",
+    "#FFD500",
+    "#FFA07A",
+    "#C70039",
+    "#007BFF",
+    "#FFD140"
+  ]
+},
+{
+  "name": "Fay's Fusion",
+  "colors": [
+    "#FFE5B4",
+    "#C7C7C7",
+    "#A9A9A9",
+    "#808080",
+    "#696969",
+    "#32CD32"
+  ]
+},
+{
+  "name": "Wong Whirls",
+  "colors": [
+    "#E9D0F4",
+    "#FCEDE4",
+    "#C0C0CB",
+    "#FFF5EE",
+    "#FFE6DB",
+    "#E0D2B2"
+  ]
+},
+{
+  "name": "Luminous Lotus",
+  "colors": [
+    "#FFEFD5",
+    "#FCD3D5",
+    "#F8F4F3",
+    "#E6DEDD",
+    "#E0DBDB",
+    "#D1C8C8"
+  ]
+},
+{
+  "name": "Jade Serenity",
+  "colors": [
+    "#9ECB8F",
+    "#B2D8BD",
+    "#A3BE8C",
+    "#87A96B",
+    "#749F63",
+    "#608957"
+  ]
+},
+{
+  "name": "Amber Embrace",
+  "colors": [
+    "#FFD700",
+    "#FFC300",
+    "#FFAB00",
+    "#FFA04D",
+    "#FF8F34",
+    "#FF7F24"
+  ]
+},
+{
+  "name": "Vibrant Serenity",
+  "colors": [
+    "#FFC3A0",
+    "#A8DADC",
+    "#FFF0F5",
+    "#FFB6C1",
+    "#B2D8D8",
+    "#FFE699"
+  ]
+},
+{
+  "name": "Energetic Sunset",
+  "colors": [
+    "#FF6F61",
+    "#FFA07A",
+    "#FFD700",
+    "#B2D8B9",
+    "#87CEEB",
+    "#4B0082"
+  ]
+},
+{
+  "name": "Tropical Vibes",
+  "colors": [
+    "#FFD700",
+    "#FFB6C1",
+    "#00BFFF",
+    "#87CEEB",
+    "#7FFFD4",
+    "#FFA500"
+  ]
+},
+{
+  "name": "Fiery Spirits",
+  "colors": [
+    "#FF6347",
+    "#FFA07A",
+    "#FFB399",
+    "#FFD700",
+    "#FFA500",
+    "#E64A19"
+  ]
+},
+{
+  "name": "Lively Harmony",
+  "colors": [
+    "#F2B179",
+    "#E696AD",
+    "#B2D8D8",
+    "#A7FFEB",
+    "#64B5F6",
+    "#3F51B5"
+  ]
+},
+{
+  "name": "Newton's Reds",
+  "colors": [
+    "#FF2400",
+    "#FF4500",
+    "#FF6600",
+    "#FF8800",
+    "#FFAA00",
+    "#FFC200"
+  ]
+},
+{
+  "name": "Prismatic Blues",
+  "colors": [
+    "#4FC3F7",
+    "#64B6FD",
+    "#8FEFF4",
+    "#ADD8E6",
+    "#D8BFD8",
+    "#EDE7F6"
+  ]
+},
+{
+  "name": "Spectrum Yellows",
+  "colors": [
+    "#FFDC00",
+    "#FFF87C",
+    "#FFF04A",
+    "#FED916",
+    "#FDB923",
+    "#F9841A"
+  ]
+},
+{
+  "name": "Optical Greens",
+  "colors": [
+    "#9AE69F",
+    "#C7EFC4",
+    "#AEEA80",
+    "#80C878",
+    "#6F8E3D",
+    "#4B6C24"
+  ]
+},
+{
+  "name": "Gravity Purples",
+  "colors": [
+    "#7F59FF",
+    "#6A3FFF",
+    "#5E3FFF",
+    "#5336FF",
+    "#4C2DFF",
+    "#4325FF"
+  ]
+},
+{
+  "name": "Mandalorian Armor",
+  "colors": [
+    "#795E4B",
+    "#E0CCAF",
+    "#5F4D45",
+    "#CFF9F0",
+    "#D7B87D",
+    "#37302D"
+  ]
+},
+{
+  "name": "Rebel Alliance",
+  "colors": [
+    "#1B2631",
+    "#A52A2A",
+    "#00796B",
+    "#4D4D4D",
+    "#C2A0C8",
+    "#FDFD96"
+  ]
+},
+{
+  "name": "Empire's Dark Side",
+  "colors": [
+    "#333333",
+    "#444444",
+    "#555555",
+    "#666666",
+    "#777777",
+    "#888888"
+  ]
+},
+{
+  "name": "Jedi Knight",
+  "colors": [
+    "#008000",
+    "#2E8B57",
+    "#7FFF00",
+    "#ADD8E6",
+    "#D3D3F7",
+    "#87CEEB"
+  ]
+},
+{
+  "name": "Tatooine Sunset",
+  "colors": [
+    "#FFCC80",
+    "#FFB366",
+    "#FFA04D",
+    "#FF8F34",
+    "#FF7C26",
+    "#FF691E"
+  ]
+},
+{
+  "name": "Mandalorian Armor",
+  "colors": [
+    "#795E4B",
+    "#E0CCAF",
+    "#5F4D45",
+    "#CFF9F0",
+    "#D7B87D",
+    "#37302D"
+  ]
+},
+{
+  "name": "Rebel Alliance",
+  "colors": [
+    "#1B2631",
+    "#A52A2A",
+    "#00796B",
+    "#4D4D4D",
+    "#C2A0C8",
+    "#FDFD96"
+  ]
+},
+{
+  "name": "Empire's Dark Side",
+  "colors": [
+    "#333333",
+    "#444444",
+    "#555555",
+    "#666666",
+    "#777777",
+    "#888888"
+  ]
+},
+{
+  "name": "Jedi Knight",
+  "colors": [
+    "#008000",
+    "#2E8B57",
+    "#7FFF00",
+    "#ADD8E6",
+    "#D3D3F7",
+    "#87CEEB"
+  ]
+},
+{
+  "name": "Tatooine Sunset",
+  "colors": [
+    "#FFCC80",
+    "#FFB366",
+    "#FFA04D",
+    "#FF8F34",
+    "#FF7C26",
+    "#FF691E"
+  ]
+},
+{
+  "name": "Error:Parsed theme names is not an array",
+  "colors": [
+    "#B71C1C",
+    "#C62828",
+    "#D32F2F",
+    "#E53935",
+    "#F44336",
+    "#EF5350"
+  ]
+},
+{
+  "name": "Geng's Harmony",
+  "colors": [
+    "#FFCC99",
+    "#C0C0C0",
+    "#99FF99",
+    "#66CCFF",
+    "#FF9999",
+    "#CCFFCC"
+  ]
+},
+{
+  "name": "Geng's Sunset",
+  "colors": [
+    "#FFD700",
+    "#FFB90F",
+    "#FF8C00",
+    "#FF5733",
+    "#FF1493",
+    "#DDA0DD"
+  ]
+},
+{
+  "name": "Geng's Serenity",
+  "colors": [
+    "#E6D7FF",
+    "#D1C4E9",
+    "#B3ABE5",
+    "#9E95D5",
+    "#837AAF",
+    "#67609C"
+  ]
+},
+{
+  "name": "Geng's Blossom",
+  "colors": [
+    "#FFD7B4",
+    "#FED9DA",
+    "#FBB0AC",
+    "#F6A8C2",
+    "#DDA0DD",
+    "#C7BFD5"
+  ]
+},
+{
+  "name": "Geng's Jade Forest",
+  "colors": [
+    "#96D791",
+    "#7FC97F",
+    "#64A664",
+    "#4CAF50",
+    "#388E3C",
+    "#2E7D32"
+  ]
+},
+{
+  "name": "FedEx Purple Palette",
+  "colors": [
+    "#9a1c2f",
+    "#901c2f",
+    "#8b1a2a",
+    "#891a24",
+    "#80191c",
+    "#7b181a"
+  ]
+},
+{
+  "name": "FedEx Orange and Blue Palette",
+  "colors": [
+    "#FFD800",
+    "#003153",
+    "#2C4263",
+    "#435FA2",
+    "#9198A3",
+    "#F2F2F2"
+  ]
+},
+{
+  "name": "FedEx Signature Color Palette",
+  "colors": [
+    "#FF2500",
+    "#R9000A",
+    "#Ye0000",
+    "#Yk0000",
+    "#Yk0019",
+    "#R93019"
+  ]
+},
+{
+  "name": "FedEx Grayscale Palette",
+  "colors": [
+    "#9a9a9a",
+    "#bdbdbd",
+    "#767676",
+    "#a9a9a9",
+    "#c2c2c2",
+    "#dddddd"
+  ]
+},
+{
+  "name": "FedEx Green and White Palette",
+  "colors": [
+    "#228B22",
+    "#FFFFFF",
+    "#FFCC00",
+    "#003399",
+    "#F2F2F2",
+    "#FFFFFF"
+  ]
+},
+{
+  "name": "Foobar Fusion",
+  "colors": [
+    "#FF6699",
+    "#FFBB33",
+    "#88CCFF",
+    "#0099CC",
+    "#9966FF",
+    "#CCFF99"
+  ]
+},
+{
+  "name": "Barfoo Breeze",
+  "colors": [
+    "#AAD4DC",
+    "#B2D8D5",
+    "#CACFD2",
+    "#D1E8E8",
+    "#E0F2F1",
+    "#F0ECF1"
+  ]
+},
+{
+  "name": "Foobar Sunset",
+  "colors": [
+    "#FF8C00",
+    "#FFA07A",
+    "#FFB6C1",
+    "#C762C8",
+    "#7F3EA4",
+    "#4E203A"
+  ]
+},
+{
+  "name": "Barfoo Noir",
+  "colors": [
+    "#333333",
+    "#444444",
+    "#555555",
+    "#666666",
+    "#777777",
+    "#888888"
+  ]
+},
+{
+  "name": "Foobar Glow",
+  "colors": [
+    "#FFE5EF",
+    "#F4D0FF",
+    "#F9FFEB",
+    "#DDA0DD",
+    "#C7FF3E",
+    "#FFC3FF"
+  ]
+},
+{
+  "name": "Sunset Serenade",
+  "colors": [
+    "#FFD700",
+    "#FFA600",
+    "#FE9A2E",
+    "#E63946",
+    "#D13167",
+    "#880E4F"
+  ]
+},
+{
+  "name": "Orange Horizon",
+  "colors": [
+    "#FFA500",
+    "#FFA07A",
+    "#FF8C00",
+    "#FF9E2C",
+    "#FF7F50",
+    "#FF6347"
+  ]
+},
+{
+  "name": "Golden Twilight",
+  "colors": [
+    "#FFD700",
+    "#FFC300",
+    "#FFAB00",
+    "#FF9100",
+    "#FF7E00",
+    "#FF6A00"
+  ]
+},
+{
+  "name": "Crimson Sunset",
+  "colors": [
+    "#FF6347",
+    "#FF8563",
+    "#FFA680",
+    "#FFCC99",
+    "#FFE6B3",
+    "#FFF9DC"
+  ]
+},
+{
+  "name": "Fading Dusk",
+  "colors": [
+    "#B289AB",
+    "#A6738E",
+    "#9A5E7D",
+    "#884A69",
+    "#743855",
+    "#5E293F"
+  ]
+},
+{
+  "name": "FooFabulous",
+  "colors": [
+    "#FF6347",
+    "#FFD700",
+    "#00C853",
+    "#48D1CC",
+    "#87CEFA",
+    "#FF00FF"
+  ]
+},
+{
+  "name": "MellowMellowFoo",
+  "colors": [
+    "#F2E6DC",
+    "#D9C4BF",
+    "#CFCFCF",
+    "#BDBDBD",
+    "#A9A9A9",
+    "#968E7D"
+  ]
+},
+{
+  "name": "FoofyFoofy",
+  "colors": [
+    "#FFD7DC",
+    "#FFB6C1",
+    "#FFA07A",
+    "#F59563",
+    "#E67E22",
+    "#DDA0DD"
+  ]
+},
+{
+  "name": "FooDreams",
+  "colors": [
+    "#FFD700",
+    "#F2C94C",
+    "#90CAF9",
+    "#C70039",
+    "#53B391",
+    "#E6683C"
+  ]
+},
+{
+  "name": "FooGarden",
+  "colors": [
+    "#F0FF8C",
+    "#B2DCDB",
+    "#74B9FF",
+    "#FF69B4",
+    "#9ACD32",
+    "#FFD700"
+  ]
+},
+{
+  "name": "Resolved Radiance",
+  "colors": [
+    "#FDB9E9",
+    "#FFE699",
+    "#C7EFCF",
+    "#F0E68C",
+    "#B2DAF2",
+    "#E6D6FF"
+  ]
+},
+{
+  "name": "Resolve Rapture",
+  "colors": [
+    "#F2E1FF",
+    "#E6D6FF",
+    "#D7B7FF",
+    "#C8A5FF",
+    "#B992FF",
+    "#A97CFF"
+  ]
+},
+{},
+{
+  "name": "Resolve Sapphire",
+  "colors": [
+    "#3F51B5",
+    "#64B5F6",
+    "#82B5F6",
+    "#9CCCFF",
+    "#B3E5FC",
+    "#D1E8FF"
+  ]
+},
+{
+  "name": "Resolved Sunset",
+  "colors": [
+    "#FF8C00",
+    "#FFA07A",
+    "#FFB399",
+    "#FFD700",
+    "#F0E68C",
+    "#E6BDAD"
+  ]
+},
+{
+  "name": "Nice Neutrals",
+  "colors": [
+    "#F5F5DC",
+    "#E0E0E0",
+    "#D1D1B6",
+    "#B9B9A4",
+    "#969688",
+    "#7F7F72"
+  ]
+},
+{
+  "name": "Serene Sunset",
+  "colors": [
+    "#FFD700",
+    "#FFB347",
+    "#FF7F50",
+    "#F5576C",
+    "#C73E7D",
+    "#8E44AD"
+  ]
+},
+{
+  "name": "Calm Ocean Waves",
+  "colors": [
+    "#969AB2",
+    "#76A5AF",
+    "#5C7E89",
+    "#3E5E63",
+    "#2F4C51",
+    "#1E3A3C"
+  ]
+},
+{
+  "name": "Sweet Pastels",
+  "colors": [
+    "#FFD2D2",
+    "#FDF5E6",
+    "#F2B8D5",
+    "#E6E6FA",
+    "#CFE2F3",
+    "#FFF0F5"
+  ]
+},
+{
+  "name": "Gentle Autumn Hues",
+  "colors": [
+    "#FFD7B3",
+    "#FFB380",
+    "#FF8C69",
+    "#FF7F50",
+    "#E65C00",
+    "#C04000"
+  ]
+},
+{
+  "name": "Gimme Green",
+  "colors": [
+    "#00FF00",
+    "#00FF7F",
+    "#00CC00",
+    "#008000",
+    "#32CD32",
+    "#90EE90"
+  ]
+},
+{
+  "name": "Money Mustard",
+  "colors": [
+    "#FFD700",
+    "#DAA520",
+    "#C7911E",
+    "#B37A12",
+    "#A5640D",
+    "#964E08"
+  ]
+},
+{
+  "name": "Cash Coral",
+  "colors": [
+    "#FF7F50",
+    "#FF9E80",
+    "#FFB6A2",
+    "#FFD7B3",
+    "#FFE5C2",
+    "#FFF2DC"
+  ]
+},
+{
+  "name": "Loan Lavender",
+  "colors": [
+    "#E0DFE4",
+    "#D8D8D8",
+    "#CFE2F3",
+    "#B9C2E2",
+    "#A7B7DE",
+    "#9FA8DC"
+  ]
+},
+{
+  "name": "Bank Blue",
+  "colors": [
+    "#0073B7",
+    "#0083B8",
+    "#0093BA",
+    "#00A3C9",
+    "#00B3D9",
+    "#00C3E9"
+  ]
+},
+{
+  "name": "New York Sunset",
+  "colors": [
+    "#FF8C00",
+    "#FFA07A",
+    "#FFB399",
+    "#FFD700",
+    "#C0CA33",
+    "#8F8F4B"
+  ]
+},
+{
+  "name": "Concrete Jungle Dreams",
+  "colors": [
+    "#8E4513",
+    "#D3BE8D",
+    "#4C7D6B",
+    "#56514C",
+    "#B0BF6A",
+    "#304352"
+  ]
+},
+{
+  "name": "The Big Apple Blend",
+  "colors": [
+    "#F5AEB1",
+    "#B9C9D3",
+    "#4A8638",
+    "#1E4D3F",
+    "#E9BC62",
+    "#EF5350"
+  ]
+},
+{
+  "name": "Staten Island Serenity",
+  "colors": [
+    "#BFD7ED",
+    "#E0EEF3",
+    "#CCEBC5",
+    "#A3D8AF",
+    "#96CDA4",
+    "#8FCFE4"
+  ]
+},
+{
+  "name": "Times Square Neon",
+  "colors": [
+    "#FFD700",
+    "#00FF00",
+    "#0000FF",
+    "#FF00FF",
+    "#00FFFF",
+    "#C70039"
+  ]
+},
+{
+  "name": "Autumn Glow",
+  "colors": [
+    "#FFD700",
+    "#FFA07A",
+    "#E6963C",
+    "#C06C61",
+    "#AB825B",
+    "#A54745"
+  ]
+},
+{
+  "name": "Winter's Frost",
+  "colors": [
+    "#D1E8F5",
+    "#BCC9DE",
+    "#9FA8DC",
+    "#768EA3",
+    "#5A6E88",
+    "#3E5D76"
+  ]
+},
+{
+  "name": "Spring Blossom",
+  "colors": [
+    "#FFDAB9",
+    "#FFEFD5",
+    "#C7EFE8",
+    "#F3D2B1",
+    "#F0E68C",
+    "#C1D4DA"
+  ]
+},
+{
+  "name": "Summer Sunset",
+  "colors": [
+    "#FFD700",
+    "#FFA07A",
+    "#FF7F50",
+    "#FFB6C1",
+    "#FF6347",
+    "#FFA07A"
+  ]
+},
+{
+  "name": "Evergreen Forest",
+  "colors": [
+    "#2E8B57",
+    "#34495E",
+    "#485460",
+    "#687F54",
+    "#7B683F",
+    "#854F2F"
+  ]
+}]
