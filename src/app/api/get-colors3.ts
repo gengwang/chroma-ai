@@ -136,7 +136,7 @@ async function genColorTheme(keyword: string = "Star Trek", model: string | null
             "name": keyword,
             "model": model,
             "timestamp": timestamp,
-            "palettes": [{'name': 'Error:' + errorMessage, 'colors': ['#FF0000']}]
+            "palettes": [{'name': 'Error:' + errorMessage, 'colors': ['#B71C1C', '#C62828', '#D32F2F', '#E53935', '#F44336', '#EF5350']}]
         }
     }
 }

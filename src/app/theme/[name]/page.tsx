@@ -30,24 +30,24 @@ export default async function Page({ params }: { params: { name: string } }) {
     return (
 			<>
 				{matchedThemes.map((theme, id) => (
-					<React.Fragment key={id}>
-						<div className="flex flex-row items-center mt-8 mb-1">
-							<span className="text-sm text-gray-800 dark:text-gray-400">
+					<div className="border-2 border-gray-200 dark:border-neutral-800 rounded-lg p-2 mb-9" key={id}>
+						<div className="flex flex-row items-center pt-2">
+							<span className="text-xs text-gray-800 dark:text-gray-500">
 								Theme:
 							</span>
-							<span className="text-sm font-semibold  text-gray-600 dark:text-gray-50 ml-1">
-								{theme.name}
+							<span className="text-xs font-semibold text-gray-600 dark:text-gray-400 ml-1">
+									{theme.name}
 							</span>
-							<span className="text-sm text-gray-800 dark:text-gray-400 ml-4">
+							<span className="text-xs text-gray-800 dark:text-gray-500 ml-4">
 								Model:
 							</span>
-							<span className="text-sm font-semibold  text-gray-600 dark:text-gray-50 ml-1">
-								{theme.model || 'Unspecified'}
+							<span className="text-xs text-gray-600 dark:text-gray-400 ml-1">
+								{theme.model? theme.model: "Unspecified"}
 							</span>
 						</div>
 						<ClassicTiles theme={theme} />
-					</React.Fragment>
+					</div>
 				))}
-			</>
+				</>
 		);
   }

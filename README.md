@@ -45,4 +45,9 @@ My initial draft took several tries and likely more time, while Cursor's AI-gene
 
 ## Demo
 
+<video width="640" height="480" controls>
+    <source src="public/readme/chroma-ai-v1.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
 https://chroma-ai-swart.vercel.app/

@@ -6,9 +6,10 @@ interface ClassicTilesProps {
     theme: Theme; // Change from colorPalettes to theme
 }
 
+/* This is one tile for a palette.*/
 const ClassicTiles: React.FC<ClassicTilesProps> = ({ theme }) => {
     return (
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+			<div className="flex flex-wrap justify-start items-center gap-6">
 				{theme.palettes.map(
 					(
 						palette,
@@ -16,32 +17,36 @@ const ClassicTiles: React.FC<ClassicTilesProps> = ({ theme }) => {
 					) => (
 						<div
 							key={index}
-							className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden"
+							className="overflow-hidden"
 						>
-							<div className="p-4">
-								<h2 className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">
+							<div className="p-2">
+								<h2 className="font-semibold mb-2 text-sm text-gray-800 dark:text-gray-200">
 									{palette.name}
 								</h2>
 								<div className="flex flex-wrap">
-									{palette.colors.map((color, colorIndex) => (
-										<div
-											key={colorIndex}
-											className="w-1/3 h-12 flex items-center justify-center text-sm"
-											style={{
-												backgroundColor: color,
-												color: getContrastColor(color),
-											}}
-										>
-											{color}
-										</div>
-									))}
+									{palette.colors.map((color, colorIndex) => {
+										console.log(`Color: ${color}, Index: ${colorIndex}, Is Name: ${palette.name}`);
+										return (
+											<div
+												key={colorIndex}
+												className={`w-9 h-8 flex items-center justify-center text-sm ${colorIndex === 0 ? 'rounded-l' : ''} ${colorIndex === palette.colors.length - 1 ? 'rounded-r' : ''}`}
+												style={{
+													backgroundColor: color,
+													color: getContrastColor(color),
+													transform: palette.name.startsWith('Error:') ? `rotate(${-90 + colorIndex * 15}deg)` : 'none', // Apply rotation only if palette name starts with "Error:"
+												}}
+											>
+												{/* {color} */}
+											</div>
+										);
+									})}
 								</div>
 							</div>
 						</div>
 					)
-				)}
+					)}
 			</div>
-		);
+				);
 };
 
 export default ClassicTiles;
