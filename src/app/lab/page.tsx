@@ -6,15 +6,8 @@ import { Palette } from "../components/visualizers/RGBCubes";
 import { Capsule, Capsules } from '../components/visualizers/Capsules';
 
 const Page = () => {
-	const [paletteName, setPaletteName] = useState<string[]>([]);
-	const [colorThemes, setColorThemes] = useState<string[][]>([
-		["#FF0000", "#00FF00"],
-		["#0000FF", "#FFFF00"],
-	]);
-
 	const [palettes, setPalettes] = useState<Palette[]>([]);
-	// const [activePalettes, setActivePalettes] = useState<number[]>(Array.from({ length: 51 }, (_, i) => i)); // Track active palettes from 0 to 50
-	const [activePalettes, setActivePalettes] = useState<number[]>([]); // Track active palettes from 0 to 50
+	const [activePalettes, setActivePalettes] = useState<number[]>([]); // Track active palettes
 
 	useEffect(() => {
 		const loadColorThemes = async () => {
@@ -28,7 +21,7 @@ const Page = () => {
 						colors: item.colors,
 						name: item.name,
 					})
-					);
+				);
 				setPalettes(palettes);
 			} catch (error) {
 				console.error("Error loading color themes:", error);
@@ -40,7 +33,6 @@ const Page = () => {
 
 	const handleEnableClick = () => {
 		setActivePalettes(prev => prev.length === 0 ? Array.from({ length: 51 }, (_, i) => i) : []); // Toggle between 0-50 and empty
-		console.log("activePalettes==>", activePalettes);
 	};
 
 	const handleCapsuleClick = (index: number) => {
@@ -57,11 +49,12 @@ const Page = () => {
 				<RGBCubeGrid size={0.1} palettes={palettes} on={activePalettes} /> {/* Pass active palettes */}
 			</div>
 			<div className='text-lg my-4 flex flex-row gap-4'>
-				<Capsule label="Toggle 0~50" onClick={handleEnableClick} />
-			</div>
+				<Capsule label="Toggle highlights 0~50" onClick={handleEnableClick} />
+			</div>	
 			<div className='text-sm flex flex-wrap gap-3 select-none'>
-				{/* <Capsules labels={palettes.map(item => item.name)} /> */}
-				{palettes.map((item, index) => <Capsule key={item.name} label={item.name} onClick={() => handleCapsuleClick(index)} />)}
+				{palettes.map((item, index) => (
+					<Capsule key={item.name} label={item.name} onClick={() => handleCapsuleClick(index)} />
+				))}
 			</div>
 		</div>
 	);

@@ -32,11 +32,13 @@ interface SwatchCubeProps extends Swatch {
 	size: number;
 	intensity?: number;
 	isHighlighted?: boolean;
+	// isHidden?: boolean; // We only need to hide the group (PaletteCubes), not individual cubes (SwatchCube)
 }
 
 interface PaletteCubesProps {
 	palette: Palette;
-	isHighlighted?: boolean; // Add this line
+	isHighlighted?: boolean;
+	isHidden?: boolean;
 }
 
 interface RGBCubesProps {
@@ -57,7 +59,7 @@ const SwatchCube: React.FC<SwatchCubeProps> = ({
 	color,
 	size = defaultProps.size,
 	intensity = defaultProps.intensity,
-	isHighlighted = false, // Replace switchState with isHighlighted
+	isHighlighted = false,
 }) => {
 	const meshRef = useRef<THREE.Mesh>(null);
 	const [position, setPosition] = useState(new THREE.Vector3(0, 0, 0));
@@ -91,52 +93,61 @@ const SwatchCube: React.FC<SwatchCubeProps> = ({
 		</mesh>
 	);
 };
-const PaletteCubes: React.FC<PaletteCubesProps> = ({ palette, isHighlighted = false }) => {
+const PaletteCubes: React.FC<PaletteCubesProps> = ({ palette, isHighlighted = false, isHidden = false }) => {
 	const originalIntensity = 0.1; // Original intensity value
 	const [intensity, setIntensity] = useState(originalIntensity);
-	// const [isHighlighted, setIsOn] = useState(false); // State to track if cubes are on
-
+	const [localIsHighlighted, setLocalIsHighlighted] = useState(isHighlighted);
 	
+	useEffect(() => {
+		setLocalIsHighlighted(isHighlighted); // Sync local state with prop changes
+	}, [isHighlighted]);
+
+	const handleClick = () => {
+		setIntensity(prevIntensity => prevIntensity === 1 ? originalIntensity : 1);
+		setLocalIsHighlighted(prevIsHighlighted => !prevIsHighlighted);
+	}
 
 	return (
-		<group onClick={(event) => {
-			event.stopPropagation(); // Prevent the click from bubbling up
-			console.log("palette clicked", palette.name);
-			// Toggle intensity and isHighlighted state
-			// setIsOn(prevIsOn => !prevIsOn);
-			setIntensity(prevIntensity => prevIntensity === 1 ? originalIntensity : 1);
-		}}>
+		<group visible={!isHidden} onClick={handleClick}>
 			{palette.colors.map((color, index) => (
-				<SwatchCube key={index} color={color} paletteName={palette.name} intensity={intensity} size={0.5} isHighlighted={isHighlighted} /> // Pass isHighlighted prop
+				<SwatchCube 
+					key={index} 
+					color={color} 
+					paletteName={palette.name} 
+					intensity={intensity} 
+					size={0.5} 
+					isHighlighted={localIsHighlighted} 
+				/>
 			))}
 		</group>
-	)
+	);
 }
 // A color palette is an array of colors with a name, each color is represented as a hex string
-const RGBCubeGrid: React.FC<RGBCubesProps> = ({ palettes, on = [], off = [] }) => {
-	
-	// console.log("Total number of groups instantiated:", palettes.length);
-
+const RGBCubeGrid: React.FC<RGBCubesProps> = ({ palettes, on = [] }) => {
 	return (
 		<Canvas gl={{ antialias: false }} frameloop="demand">
 			{palettes.map((palette, paletteIndex) => {
 				if (!palette || !Array.isArray(palette.colors)) {
-					// Handle the case where palette is not defined or colors is not an array
-					const geometry = new BoxGeometry(1, 1, 1); // Create a box geometry
+					const geometry = new BoxGeometry(1, 1, 1);
 					const material = new MeshStandardMaterial({
 						color: "white",
 						emissive: "white",
-					}); // Create a material with black emission
+					});
 					return (
 						<group key="fallback">
-							<mesh geometry={geometry} material={material} />{" "}
-							{/* Return the mesh */}
+							<mesh geometry={geometry} material={material} />
 						</group>
 					);
 				} else {
-					const isHighlighted = on.includes(paletteIndex) ? true : off.includes(paletteIndex) ? false : undefined; // Determine isHighlighted state based on indices
+					const isHighlighted = on.includes(paletteIndex);
+					const isHidden = on.length > 0 && !isHighlighted;
 					return (
-						<PaletteCubes key={palette.name} palette={palette} isHighlighted={isHighlighted} /> // Pass isHighlighted prop
+						<PaletteCubes 
+							key={palette.name} 
+							palette={palette} 
+							isHighlighted={isHighlighted} 
+							isHidden={isHidden}
+						/>
 					);
 				}
 			})}
