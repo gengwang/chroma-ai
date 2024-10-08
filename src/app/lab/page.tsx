@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import RGBCubeGrid from "../components/visualizers/RGBCubes";
+import RGBCubeGrid, { CoordinateHelper } from "../components/visualizers/RGBCubes";
 import { Palette } from "../components/visualizers/RGBCubes";
 import { Capsule, Capsules } from '../components/visualizers/Capsules';
 
@@ -44,9 +44,12 @@ const Page = () => {
 
 	return (
 		<div>
-			<h1 className="text-xl font-bold">Welcome to the Color Lab😎</h1>
+			<h1 className="text-xl font-bold">Welcome to the Color Lab!</h1>
+			{/* <div className="w-full h-[40vw] bg-gray-100 dark:bg-gray-900">
+				<CoordinateHelper />
+			</div> */}
 			<div className="w-full h-[20vw] bg-gray-100 dark:bg-gray-900">
-				<RGBCubeGrid size={0.1} palettes={palettes} on={activePalettes} /> {/* Pass active palettes */}
+				<RGBCubeGrid size={0.1} palettes={palettes} on={activePalettes} />
 			</div>
 			<div className='text-lg my-4 flex flex-row gap-4'>
 				<Capsule label="Toggle highlights 0~50" onClick={handleEnableClick} />
