@@ -18,7 +18,7 @@ const Capsule: React.FC<CapsuleProps> = ({ label, onClick }) => {
 	return (
 		<div 
 			onClick={handleClick} 
-			className={`capsule border-2 rounded-lg px-4 py-1 cursor-pointer ${isActive ? 'border-blue-500 bg-blue-100 dark:bg-blue-900' : 'border-gray-300 dark:border-gray-700'}`}
+			className={`border-2 rounded-lg px-4 py-1 cursor-pointer font-semibold ${isActive ? 'border-blue-500 bg-blue-100 dark:bg-blue-900' : 'border-gray-300 dark:border-gray-700'}`}
 		>
 			{label}
 		</div>

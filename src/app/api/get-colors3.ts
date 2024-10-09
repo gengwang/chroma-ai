@@ -141,45 +141,33 @@ async function genColorTheme(keyword: string = "Star Trek", model: string | null
     }
 }
 // Fetch from HF if no cache exists in mongodb
-export default async function fetchColorThemes(prevState: { message: string; }, formData: FormData) {
+export default async function fetchColorThemes(formData: FormData) {
     const schema = z.object({
-		keyword: z.string().min(1),
-		model: z.string().optional(), // Make model optional
-	});
+        keyword: z.string().min(1),
+        model: z.string().optional(), // Make model optional
+    });
 
     const parse = schema.safeParse({
-		keyword: formData.get("keyword"),
-		model: formData.get("model") || ''
-	});
+        keyword: formData.get("keyword"),
+        model: formData.get("model") || ''
+    });
 
     if (!parse.success) {
-		return { message: "Failed to create todo" };
-	}
+        return { message: "Failed to create todo" };
+    }
 
-	const { keyword, model } = parse.data;
+    const { keyword, model } = parse.data;
 
-    // console.log('z----keyword:', keyword, '; model:', model);
-
-    // redirect('/theme/star-trek');
-    
     const exists = await colorThemeByNameExists(keyword);
 
-    if(exists) {
-        redirect(`/theme/${slugFromName(keyword)}`); 
+    if (exists) {
+        redirect(`/theme/${slugFromName(keyword)}`);
     }
 
     const result = await genColorTheme(keyword, model);
-    // console.log('result!!!!', result);
 
-    // Insert the theme and get a plain object back
     const insertedTheme = await insertColorTheme(result as Theme);
-    // console.log("Inserted theme:", insertedTheme);
 
-    const formattedThemeName = slugFromName(insertedTheme.name); // Format the theme name
-    redirect(`/theme/${formattedThemeName}`); // Use the formatted name
-
-    // return {
-    //     'message': 'completed',
-    //     'result': insertedTheme // Return the plain object
-    // };
+    const formattedThemeName = slugFromName(insertedTheme.name);
+    redirect(`/theme/${formattedThemeName}`);
 }

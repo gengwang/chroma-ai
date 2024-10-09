@@ -128,7 +128,7 @@ const RGBCubeGrid: React.FC<RGBCubesProps> = ({ palettes, on = [] }) => {
 			near: 0.1,
 			far: 1000,
 			zoom: 5,
-		}}frameloop="demand">
+		}} frameloop="demand">
 			{palettes.map((palette, paletteIndex) => {
 				if (!palette || !Array.isArray(palette.colors)) {
 					// error?
@@ -158,7 +158,7 @@ const RGBCubeGrid: React.FC<RGBCubesProps> = ({ palettes, on = [] }) => {
 			})}
 			<axesHelper args={[distance]} />
 			<OrbitControls />
-			<Stats />
+			{/* <Stats /> */}
 		</Canvas>
 	);
 };
