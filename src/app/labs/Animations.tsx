@@ -7,26 +7,13 @@ import { Vector3 } from 'three';
 import * as THREE from 'three';
 import { useSpring, animated } from '@react-spring/three'
 
+// Move this function outside of the component
 const getRandomPosition = () => {
 	return {
 		x: Math.random() * 200 - 100, // Random x between -100 and 100
 		y: Math.random() * 200 - 100, // Random y between -100 and 100
 		z: Math.random() * 200 - 100  // Random z between -100 and 100
 	};
-};
-
-const Cubes = () => {
-	const cubes = Array.from({ length: 6 }, (_, index) => {
-		const position = getRandomPosition();
-		return (
-			// <Box key={index} args={[10, 10, 10]} position={[position.x, position.y, position.z]}>
-			// 	<meshStandardMaterial attach="material" color="pink" />
-			// </Box>
-            <Cube key={index} index={index} position={{x: position.x, y: position.y, z: position.z}} />
-		);
-	});
-
-	return <>{cubes}</>;
 };
 
 const Scene = () => {
@@ -51,31 +38,78 @@ const Scene = () => {
 		<Canvas>
 			<ambientLight />
 			<pointLight position={[10, 10, 10]} />
-			<Cubes />
-			<OrbitControls zoom0={0.5} ref={controlsRef} />
+			<Cubes active={false} />
+			<OrbitControls zoom0={0.1} ref={controlsRef} />
 		</Canvas>
 	);
 };
 
 export default Scene;
 
-const Cube = ({index, position}: {index: number, position: {
-    x: number; 
-    y: number; 
-    z: number; 
-}}) => {
-    const [active, setActive] = useState(false);
-    const springs = useSpring({ scale: active ? 1.5 : 1, color: active ? 'hotpink' : 'royalblue' })
+const Cubes = ({active: propActive = false}: {active: boolean}) => {
+    const [active, setActive] = useState(propActive);
 
-        return (
-            <animated.mesh 
-                onClick={() => setActive(!active)} 
+    useEffect(() => {
+        setActive(propActive);
+    }, [propActive]);
+
+    const numberOfCubes = 6; // Assuming you want 6 cubes
+    const [positions, setPositions] = useState(Array.from({ length: numberOfCubes }, () => getRandomPosition()));
+
+    useEffect(() => {
+        const initialPositions = Array.from({ length: numberOfCubes }, () => getRandomPosition());
+        setPositions(initialPositions); // Assuming you have a state to hold positions
+    }, []); // Empty dependency array ensures this runs only once on mount
+
+    const cubes = Array.from({ length: numberOfCubes }, (_, index) => {
+		const position = positions[index];
+		return (
+			// <Box key={index} args={[10, 10, 10]} position={[position.x, position.y, position.z]}>
+			// 		<meshStandardMaterial attach="material" color="pink" />
+			// </Box>
+            <Cube 
                 key={index} 
-                position={[position.x, position.y, position.z]} 
-                scale={springs.scale}
-            >
-                <boxGeometry args={[10, 10, 10]} />
-                <animated.meshPhongMaterial color={springs.color} />
-            </animated.mesh>
-        );
-}
+                index={index} 
+                position={{x: position.x, y: position.y, z: position.z}} 
+                active={active} 
+                onClick={() => setActive(!active)}
+            />
+		);
+	});
+
+	return <>{cubes}</>;
+};
+
+const Cube = ({
+	index,
+	position,
+	active: propActive,
+	onClick,
+}: {
+	index: number;
+	position: { x: number; y: number; z: number };
+	active: boolean;
+	onClick: () => void;
+}) => {
+	const [active, setActive] = useState(propActive);
+	const springs = useSpring({
+		scale: active ? 1.5 : 1,
+		color: active ? "hotpink" : "royalblue",
+	});
+
+	useEffect(() => {
+		setActive(propActive);
+	}, [propActive]);
+
+	return (
+		<animated.mesh
+			onClick={onClick} // Use the onClick prop from the parent
+			key={index}
+			position={[position.x, position.y, position.z]}
+			scale={springs.scale}
+		>
+			<boxGeometry args={[10, 10, 10]} />
+			<animated.meshPhongMaterial color={springs.color} />
+		</animated.mesh>
+	);
+};

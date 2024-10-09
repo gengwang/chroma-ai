@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useRef, useEffect } from "react";
 import * as THREE from "three";
 import { BoxGeometry, MeshStandardMaterial, Vector3 } from "three";
+import { useSpring, animated } from '@react-spring/three';
 // Ref: Mass InstancedMesh https://sbedit.net/564a06d91ca806757716b7c73223348b5dc4938f
 
 const hexToRgb = (hex: string) => {
@@ -32,13 +33,13 @@ interface SwatchCubeProps extends Swatch {
 	size: number;
 	intensity?: number;
 	isHighlighted?: boolean;
-	// isHidden?: boolean; // We only need to hide the group (PaletteCubes), not individual cubes (SwatchCube)
+	isDimmed?: boolean; // We only need to hide the group (PaletteCubes), not individual cubes (SwatchCube)
 }
 
 interface PaletteCubesProps {
 	palette: Palette;
 	isHighlighted?: boolean;
-	isHidden?: boolean;
+	isDimmed?: boolean;
 }
 
 interface RGBCubesProps {
@@ -53,17 +54,19 @@ const defaultProps = {
 	intensity: 0.5, // Default value for intensity
 	size: 0.5,
 };
-
+// TODO: need a basic heuristic for size based on intensity!
 const SwatchCube: React.FC<SwatchCubeProps> = ({
 	paletteName,
 	color,
-	size = defaultProps.size,
-	intensity = defaultProps.intensity,
-	isHighlighted = false,
+	// size = defaultProps.size,
+	// intensity = defaultProps.intensity,
+	isHighlighted: isPropHighlighted = false,
+	isDimmed: isPropDimmed = false,
 }) => {
 	const meshRef = useRef<THREE.Mesh>(null);
 	const [position, setPosition] = useState(new THREE.Vector3(0, 0, 0));
-
+	const [isHighlighted, setIsHighlighted] = useState(isPropHighlighted);
+	const [isDimmed, setIsDimmed] = useState(isPropDimmed);
 	useEffect(() => {
 		if (meshRef.current) {
 			const { r, g, b } = hexToRgb(color) || { r: 0, g: 0, b: 0 };
@@ -71,28 +74,43 @@ const SwatchCube: React.FC<SwatchCubeProps> = ({
 		}
 	}, [color, meshRef]); // Update position when color changes
 
+	useEffect(() => {
+		setIsHighlighted(isPropHighlighted);
+		setIsDimmed(isPropDimmed);
+	}, [isPropHighlighted, isPropDimmed]);
+
+	const springs = useSpring({
+		emissiveIntensity: isHighlighted ? 1 : 0.5,
+		scale: isHighlighted ? 2.8 : 1,
+		opacity: isDimmed ? 0.1 : 1,
+	});
+
 	return (
-		<mesh
+		<animated.mesh
 			ref={meshRef}
 			position={position}
-			scale={isHighlighted ? [2, 2, 2] : [1, 1, 1]} // Use scale to change size
+			scale={springs.scale}
 		>
-			<boxGeometry args={[size, size, size]} /> {/* Original size for geometry */}
-			<meshStandardMaterial
+			<boxGeometry args={[0.3, 0.3, 0.3]} /> {/* Original size for geometry */}
+			<animated.meshStandardMaterial
 				color={"black"}
 				emissive={new THREE.Color(color)}
-				emissiveIntensity={isHighlighted ? 1 : intensity} // Use isHighlighted to determine intensity
-				opacity={1} // Set the desired opacity (0.0 is fully transparent, 1.0 is fully opaque)
-				transparent={true} // Enable transparency
+				emissiveIntensity={springs.emissiveIntensity}
+				opacity={springs.opacity}
+				transparent={true}
 			/>
-		</mesh>
+		</animated.mesh>
 	);
 };
-const PaletteCubes: React.FC<PaletteCubesProps> = ({ palette, isHighlighted = false, isHidden = false }) => {
+const PaletteCubes: React.FC<PaletteCubesProps> = ({
+	palette,
+	isHighlighted = false,
+	isDimmed = false,
+}) => {
 	const originalIntensity = 0.1; // Original intensity value
 	const [intensity, setIntensity] = useState(originalIntensity);
 	const [localIsHighlighted, setLocalIsHighlighted] = useState(isHighlighted);
-	
+
 	useEffect(() => {
 		setLocalIsHighlighted(isHighlighted); // Sync local state with prop changes
 		console.log("isHighlighted==>", isHighlighted);
@@ -100,25 +118,28 @@ const PaletteCubes: React.FC<PaletteCubesProps> = ({ palette, isHighlighted = fa
 
 	const handleClick = () => {
 		// console.log("handleClick==>", isHighlighted);
-		setIntensity(prevIntensity => prevIntensity === 1 ? originalIntensity : 1);
-		setLocalIsHighlighted(prevIsHighlighted => !prevIsHighlighted);
-	}
+		setIntensity((prevIntensity) =>
+			prevIntensity === 1 ? originalIntensity : 1
+		);
+		setLocalIsHighlighted((prevIsHighlighted) => !prevIsHighlighted);
+	};
 
 	return (
-		<group visible={!isHidden} onClick={handleClick} dispose={null}>
+		<group onClick={handleClick} dispose={null}>
 			{palette.colors.map((color, index) => (
-				<SwatchCube 
-					key={index} 
-					color={color} 
-					paletteName={palette.name} 
-					intensity={intensity} 
-					size={0.5} 
-					isHighlighted={localIsHighlighted} 
+				<SwatchCube
+					key={index}
+					color={color}
+					paletteName={palette.name}
+					intensity={intensity}
+					size={0.5}
+					isHighlighted={localIsHighlighted}
+					isDimmed={isDimmed}
 				/>
 			))}
 		</group>
 	);
-}
+};
 // A color palette is an array of colors with a name, each color is represented as a hex string
 const RGBCubeGrid: React.FC<RGBCubesProps> = ({ palettes, on = [] }) => {
 	const distance = 26;
@@ -128,7 +149,7 @@ const RGBCubeGrid: React.FC<RGBCubesProps> = ({ palettes, on = [] }) => {
 			near: 0.1,
 			far: 1000,
 			zoom: 5,
-		}} frameloop="demand">
+		}} >
 			{palettes.map((palette, paletteIndex) => {
 				if (!palette || !Array.isArray(palette.colors)) {
 					// error?
@@ -145,13 +166,13 @@ const RGBCubeGrid: React.FC<RGBCubesProps> = ({ palettes, on = [] }) => {
 					);
 				} else {
 					const isHighlighted = on.includes(paletteIndex);
-					const isHidden = on.length > 0 && !isHighlighted;
+					const isDimmed = on.length > 0 && !isHighlighted;
 					return (
 						<PaletteCubes 
 							key={palette.name} 
 							palette={palette} 
 							isHighlighted={isHighlighted} 
-							isHidden={isHidden}
+							isDimmed={isDimmed}
 						/>
 					);
 				}
