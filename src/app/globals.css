@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #ffffff; /* Light mode background */
+  --foreground: #171717; /* Light mode foreground */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #111827; /* Equivalent to Tailwind's bg-gray-900 */
+    --foreground: #ededed; /* Dark mode foreground */
   }
 }
 
@@ -24,4 +24,13 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+html {
+    background-color: #ffffff; /* Light mode background */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+html.dark {
+    background-color: #1a202c; /* Dark mode background (Tailwind's gray-800) */
 }

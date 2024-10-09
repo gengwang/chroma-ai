@@ -43,13 +43,13 @@ const Page = () => {
 	};
 
 	return (
-		<div>
+		<>
 			{/* <h1 className="text-xl font-bold">Explore</h1> */}
 			{/* <div className="w-full h-[40vw] bg-gray-100 dark:bg-gray-900">
 				<CoordinateHelper />
 			</div> */}
-			<div className="flex w-full gap-4"> {/* Add gap utility here */}
-				<div className="flex-1 h-screen bg-gray-100 dark:bg-black">
+			<div className="flex w-full gap-4 bg-white dark:bg-gray-900 text-black dark:text-white"> {/* Add gap utility here */}
+				<div className="flex-1 h-screen bg-gray-100 dark:bg-gray-900">
 					<RGBCubeGrid size={0.1} palettes={palettes} on={activePalettes} />
 				</div>
 				<div className='w-[700px] h-screen overflow-y-auto text-xs flex flex-wrap gap-3 select-none'>
@@ -62,7 +62,7 @@ const Page = () => {
 				<Capsule label="Toggle highlights 0~50" onClick={handleEnableClick} />
 			</div>	 */}
 			
-		</div>
+		</>
 	);
 };
 
