@@ -1,11 +1,15 @@
+import { RiBox1Line, RiBarChartLine, RiLayoutGridLine } from 'react-icons/ri';
+
 const Toolbar = () => {
 	return (
-		<div className="flex flex-row justify-between bg-gray-900 text-white">
-			<div className="flex flex-row">
-				<button>Home</button>
-				<button>Learn</button>
-				<button>Play</button>
-			</div>
+		<div className="flex flex-row justify-between gap-4 bg-gray-900 text-white p-2 rounded-lg">
+			
+				<button>
+					<RiLayoutGridLine /> {/* Icon for 3D */}
+				</button>
+				<button>
+					<RiBarChartLine /> {/* Icon for Charts */}
+				</button>
 		</div>
 	);
 }

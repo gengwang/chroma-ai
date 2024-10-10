@@ -1,11 +1,12 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { RGBCubeGrid } from "../components/visualizers/RGBCubes";
+import { RGBCubeGrid, RGBCubesProps } from "../components/visualizers/RGBCubes";
 import { Capsule } from '../components/visualizers/Capsules';
 import DraggableDivider from '../components/DraggableDivider';
 import { Palette } from '../components/visualizers/RGBCubes';
 import { Toolbar } from '../components/Toolbar';
+import AxisStats from '../components/visualizers/AxisStats';
 
 const Page = () => {
 	const [palettes, setPalettes] = useState<Palette[]>([]);
@@ -41,6 +42,8 @@ const Page = () => {
 		);
 	};
 
+	const views:RGBCubesProps['view'][] = ["front", "left", "top"];
+
 	return (
 		<div className="flex w-full h-[calc(100%-120px)] overflow-hidden bg-white dark:bg-gray-900 text-black dark:text-white"> {/* TODO: Make this full height without -120px workaround. */}
 			{/* Left Side: RGBCubeGrids */}
@@ -55,17 +58,11 @@ const Page = () => {
 
 				{/* Second Row: Three RGBCubeGrids with different views */}
 				{/* TODO: Toolbar for showing these views */}
-				{/* <div className="flex h-[300px] border border-gray-300 dark:border-gray-700">
-					<div className="flex-1 border border-red-400">
-						<RGBCubeGrid size={0.1} palettes={palettes} on={activePalettes} view="top" />
-					</div>
-					<div className="flex-1 border border-blue-400">
-						<RGBCubeGrid size={0.1} palettes={palettes} on={activePalettes} view="front" />
-					</div>
-					<div className="flex-1 border border-green-400">
-						<RGBCubeGrid size={0.1} palettes={palettes} on={activePalettes} view="left" />
-					</div>
-				</div> */}
+				<div className="flex items-center h-[300px] border border-gray-300 dark:border-gray-700">
+					{views.map(view => (
+						<AxisStats key={view} palettes={palettes} activePalettes={activePalettes} view={view} />
+					))}
+				</div>
 			</div>
 
 			{/* Draggable Divider */}

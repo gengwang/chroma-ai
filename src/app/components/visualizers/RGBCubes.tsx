@@ -245,4 +245,4 @@ ro					<boxGeometry args={[1, 1, 1]} />
 }
 
 export { RGBCubeGrid, CoordinateHelper }; // Consolidated exports
-export type { Palette };
+export type { Palette, RGBCubesProps };
