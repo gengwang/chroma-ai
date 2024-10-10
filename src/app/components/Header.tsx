@@ -48,7 +48,7 @@ const Header = () => {
     };
 
     return (
-			<div className="flex items-center space-x-4 min-h-[64px] bg-white dark:bg-gray-900">
+			<div className="flex items-center space-x-4 min-h-[64px] bg-white dark:bg-gray-900 p-4">
 				<div className="flex-grow flex items-baseline space-x-4 text-gray-500 dark:text-gray-500">
 					<h1 className="font-bold">{(siteMetadata?.title as string) || ""}</h1>
 					<p className="text-sm">

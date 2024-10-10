@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={spaceMono.className}>
       <body
-        className="antialiased mx-6 my-4"
+        className="antialiased h-screen"
       >
         <Header />
         {children}

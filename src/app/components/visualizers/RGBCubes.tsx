@@ -1,5 +1,5 @@
 import { OrbitControls } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import { Stats } from "@react-three/drei";
 import { useState } from "react";
 import { useRef, useEffect } from "react";
@@ -44,10 +44,12 @@ interface PaletteCubesProps {
 
 interface RGBCubesProps {
 	palettes: Palette[];
+	distance?: number;
 	size: number; // Define the size prop as a single number
 	intensity?: number; // Define the new prop
 	on?: number[]; // New prop for indices to turn on
 	off?: number[]; // New prop for indices to turn off
+	view?: 'isometric' | 'top' | 'left' | 'front'; // New prop for view type
 }
 
 const defaultProps = {
@@ -140,15 +142,43 @@ const PaletteCubes: React.FC<PaletteCubesProps> = ({
 		</group>
 	);
 };
+function TopViewCamera() {
+	const { camera } = useThree();
+  
+	// Set the camera position above the scene looking down
+	camera.position.set(0, 20, 0); 
+	camera.rotation.set(-Math.PI / 2, 0, 0);
+  
+	return null;
+  }
 // A color palette is an array of colors with a name, each color is represented as a hex string
-const RGBCubeGrid: React.FC<RGBCubesProps> = ({ palettes, on = [] }) => {
-	const distance = 26;
+// The distance is approximately 255/10
+const RGBCubeGrid: React.FC<RGBCubesProps> = ({ palettes, on = [], distance = 26, view = 'isometric' }) => {
+	// Determine camera position based on the view prop
+	const getCameraPosition = () => {
+		switch (view) {
+			case 'isometric':
+				return [distance * 1, distance * 1, distance * 1];
+			case 'top':
+				return [0, distance * 1, 0];
+			case 'left':
+				return [-distance * 1, distance * 1, 0];
+			case 'front':
+				return [0, distance * 1, -distance * 1];
+			default:
+				return [distance * 1, distance * 1, distance * 1]; // Default to isometric
+		}
+	};
+
+	const cameraPosition = getCameraPosition();
+
 	return (
 		<Canvas gl={{ antialias: false }} orthographic={true} camera={{
-			position: [distance * 2, distance * 2, distance * 2], // Adjust as needed
+			position: [cameraPosition[0], cameraPosition[1], cameraPosition[2]], // Ensure it's a tuple of three numbers
+			
 			near: 0.1,
 			far: 1000,
-			zoom: 5,
+			zoom: 16,
 		}} >
 			{palettes.map((palette, paletteIndex) => {
 				if (!palette || !Array.isArray(palette.colors)) {
@@ -188,13 +218,7 @@ const CoordinateHelper = () => {
 	const distance = 10; // Adjust this value as needed
 
 	return (
-		<Canvas orthographic={true} camera={{
-			position: [distance * 2, distance * 2, distance * 2], // Adjust as needed
-			near: 0.1,
-			far: 1000,
-			zoom: 20,
-		}}>
-			
+		<Canvas gl={{ antialias: false }} orthographic={true}>
 			<group>
 				<mesh position={[0, 0, 0]}>
 ro					<boxGeometry args={[1, 1, 1]} />
@@ -220,6 +244,5 @@ ro					<boxGeometry args={[1, 1, 1]} />
 	);
 }
 
-export default RGBCubeGrid;
-export { CoordinateHelper };
+export { RGBCubeGrid, CoordinateHelper }; // Consolidated exports
 export type { Palette };
