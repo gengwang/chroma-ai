@@ -2,6 +2,7 @@ import { transformThemes } from "@/app/data/colors";
 import * as Plot from "@observablehq/plot";
 import { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
+import { scaleLinear } from 'd3-scale'; // Make sure to import scaleLinear
 
 interface RGBTicksProps {
 	filter?: string[]; // Make filter prop optional
@@ -12,6 +13,13 @@ const RGBTicks: React.FC<RGBTicksProps> = ({ filter = [] }) => {
 	const [data, setData] = useState<
 		{ paletteName: string; channel: string; value: number }[]
 	>([]);
+
+	const lowerRange = 125; // Define the lower range variable
+
+	// Create a linear scale
+	const colorScale = scaleLinear()
+		.domain([0, 255]) // Input domain
+		.range([lowerRange, 255]); // Output range
 
 	useEffect(() => {
 		d3.json("/chroma_ai.themes.json").then((data: any) => {
@@ -32,17 +40,29 @@ const RGBTicks: React.FC<RGBTicksProps> = ({ filter = [] }) => {
 				: data;
 		// Source: https://observablehq.com/plot/features/transforms
 		const plot = Plot.plot({
-			marginLeft: 60,
+			marginLeft: 40,
 			marginRight: 10,
 			width: 1200,
+			// style: {
+			// 	backgroundColor: "#888888",
+			// },
 			x: { label: "R/G/B values" },
 			y: { label: null },
 			marks: [
-				Plot.ruleX([0]),
+				// Plot.ruleX([0]),
 				Plot.tickX(filteredData, {
 					x: "value",
 					y: "channel",
-					strokeOpacity: 0.6,
+					stroke: "#888888",
+					// stroke: (d) =>
+					// 	d.channel === "r"
+					// 		? `rgb(${colorScale(d.value)}, 0, 0)` // Red channel
+					// 		: d.channel === "g"
+					// 		? `rgb(0, ${colorScale(d.value)}, 0)` // Green channel
+					// 		: d.channel === "b"
+					// 		? `rgb(0, 0, ${colorScale(d.value)})` // Blue channel
+					// 		: "white", // Default color
+					strokeOpacity: 1,
 				}),
 				Plot.tickX(
 					filteredData,
@@ -53,17 +73,20 @@ const RGBTicks: React.FC<RGBTicksProps> = ({ filter = [] }) => {
 							y: "channel",
 							stroke: (d) =>
 								d.channel === "r"
-									? "#ff0000"
+									? "rgba(255, 0, 0, 1)"
 									: d.channel === "g"
-									? "#00ff00"
+									? "rgba(0, 255, 0, 1)"
 									: d.channel === "b"
-									? "#0000ff"
+									? "rgba(0, 0, 255, 1)"
 									: "white", // Conditional stroke color
 							strokeWidth: 4,
 							// sort: { y: "x" },
 						}
 					)
 				),
+				// Plot.axisX({ label: null, lineWidth: 8, marginBottom: 40 }),
+				// Plot.axisY({ label: "R/G/B values" }),
+				// Plot.ruleY([0])
 			],
 		});
 

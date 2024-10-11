@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { RGBCubeGrid, RGBCubesProps } from "../components/visualizers/RGBCubes";
 import { Capsule } from '../components/visualizers/Capsules';
 import DraggableDivider from '../components/DraggableDivider';
@@ -75,12 +75,14 @@ const Page: React.FC = () => {
 				<div className="flex grow relative">
 					{" "}
 					{/* This div will grow to take available space */}
-					<RGBCubeGrid
-						size={0.1}
-						palettes={palettes}
-						on={activePalettes}
-						view="isometric"
-					/>
+					<Suspense fallback={<div>Loading...</div>}>
+						<RGBCubeGrid
+							size={0.1}
+							palettes={palettes}
+							on={activePalettes}
+							view="isometric"
+						/>
+					</Suspense>
 					<div className="absolute bottom-0 left-0 m-4">
 						{" "}
 						{/* Toolbar positioned at bottom right */}
@@ -93,7 +95,9 @@ const Page: React.FC = () => {
 				</div>
 				{/* Second Row: Three RGBCubeGrids with different views */}
 				<div className="flex flex-row w-full border-orange-300">
-					{showChart && <RGBTicks filter={activeCapsules} />}{" "}
+					{showChart && <Suspense fallback={<div>Loading...</div>}>
+						<RGBTicks filter={activeCapsules} />
+					</Suspense>}
 					{/* Pass activeCapsules as filter */}
 					{/* TODO: Fix the layout issue where each AxisStats is too wide to fit in. */}
 					<div className="flex flex-row w-[200px] overflow-hidden">
@@ -112,18 +116,20 @@ const Page: React.FC = () => {
 			{/* Draggable Divider */}
 			{/* <DraggableDivider onDrag={handleDrag} /> */}
 			{/* Right Side: Capsule List */}
-			<div
-				className={`w-1/3 overflow-y-scroll text-xs flex flex-wrap gap-3 select-none`}
-			>
-				{palettes.length > 0 &&
-					palettes.map((item, index) => (
-						<Capsule
-							key={item.name}
-							label={item.name}
-							onClick={() => handleCapsuleClick(index, item.name)}
-						/>
-					))}
-			</div>
+			<Suspense fallback={<div>Loading...</div>}>
+				<div
+					className={`w-1/3 overflow-y-scroll text-xs flex flex-wrap gap-3 select-none`}
+				>
+					{palettes.length > 0 &&
+						palettes.map((item, index) => (
+							<Capsule
+								key={item.name}
+								label={item.name}
+								onClick={() => handleCapsuleClick(index, item.name)}
+							/>
+						))}
+				</div>
+			</Suspense>	
 		</div>
 	);
 };
