@@ -48,8 +48,8 @@ const Header = () => {
     };
 
     return (
-			<div className="flex items-center space-x-4 min-h-[64px] bg-white dark:bg-gray-900 p-4">
-				<div className="flex-grow flex items-baseline space-x-4 text-gray-500 dark:text-gray-500">
+			<div className="flex items-center p-4 space-x-4 min-h-[64px]">
+				<div className="flex-grow flex items-baseline space-x-4">
 					<h1 className="font-bold">{(siteMetadata?.title as string) || ""}</h1>
 					<p className="text-sm">
 						{(siteMetadata?.description as string) || ""}
@@ -70,7 +70,7 @@ const Header = () => {
 						<RiBookOpenLine className="h-5 w-5" aria-hidden="true" />
 						<span>Learn</span>
 					</button>
-					<button 
+					{false && <button 
 						onClick={toggleTheme} 
 						className="flex items-center space-x-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
 					>
@@ -80,7 +80,7 @@ const Header = () => {
 							<RiMoonLine className="h-5 w-5" aria-hidden="true" /> // Moon icon for dark theme
 						)}
 						<span>Theme</span> {/* Button text */}
-					</button>
+					</button>}
 				</div>
 			</div>
 		);

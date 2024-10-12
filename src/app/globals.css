@@ -34,5 +34,6 @@ html {
 }
 
 html.dark {
-    background-color: #111827; /*  var(--background) has problems with tailwind */
+    /* background-color: #111827;  */
+      background-color: var(--background)
 }

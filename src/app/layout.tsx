@@ -24,14 +24,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={spaceMono.className}>
-      <body
-        className="antialiased h-screen"
-      >
-        <Header />
-        {children}
-        <Footer />
-      </body>
-    </html>
-  );
+		<html lang="en" className={spaceMono.className}>
+			<body className="antialiased h-screen">
+				<div className="flex flex-col min-h-screen">
+					<div className="flex-0">
+						<Header />
+					</div>
+					<div className="flex flex-grow">
+						{children}
+					</div>
+					<div className="flex-0">
+						<Footer />
+					</div>
+				</div>
+			</body>
+		</html>
+	);
 }

@@ -3,7 +3,7 @@ import { RiLinkedinLine, RiTwitterLine, RiGithubLine } from 'react-icons/ri';
 
 const Footer = () => {
   return (
-		<footer className="w-full py-8 px-0 bg-white dark:bg-black">
+		<footer className="w-full py-8 px-0">
 			<div className="mx-10 flex justify-center items-center gap-4">
 				<div className="flex space-x-4">
 					<Link

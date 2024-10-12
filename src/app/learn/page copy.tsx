@@ -65,15 +65,15 @@ const Page: React.FC = () => {
 	};
 
 	return (
-		<div
-			className="flex w-full overflow-hidden"
-			style={{ height: `calc(100vh - 80px)` }}
-		>
+		<div className="flex w-full h-[calc(100%-120px)] overflow-hidden bg-white dark:bg-gray-900 text-black dark:text-white">
+			{" "}
 			{/* TODO: Make this full height without -120px workaround. */}
 			{/* Left Side: RGBCubeGrids */}
-			<div className="flex grow flex-col relative">
+			<div className="flex grow flex-col relative border-orange-400">
+				{" "}
 				{/* Ensure this takes available space */}
 				<div className="flex grow relative">
+					{" "}
 					{/* This div will grow to take available space */}
 					<Suspense fallback={<div>Loading...</div>}>
 						<RGBCubeGrid
@@ -84,20 +84,20 @@ const Page: React.FC = () => {
 						/>
 					</Suspense>
 					<div className="absolute bottom-0 left-0 m-4">
-						<Toolbar toggleChart={toggleChart} showChart={showChart} />
+						{" "}
+						{/* Toolbar positioned at bottom right */}
+						<Toolbar
+							toggleChart={toggleChart}
+							showChart={showChart} // Pass the visibility state
+						/>{" "}
+						{/* Pass the toggle function */}
 					</div>
 				</div>
 				{/* Second Row: Three RGBCubeGrids with different views */}
-				<div
-					className={`flex flex-row w-full border-orange-300 ${
-						showChart ? "" : "collapse"
-					}`}
-				>
-					{true && (
-						<Suspense fallback={<div>Loading...</div>}>
-							<RGBTicks filter={activeCapsules} />
-						</Suspense>
-					)}
+				<div className="flex flex-row w-full border-orange-300">
+					{showChart && <Suspense fallback={<div>Loading...</div>}>
+						<RGBTicks filter={activeCapsules} />
+					</Suspense>}
 					{/* Pass activeCapsules as filter */}
 					{/* TODO: Fix the layout issue where each AxisStats is too wide to fit in. */}
 					<div className="flex flex-row w-[200px] overflow-hidden">
@@ -117,7 +117,9 @@ const Page: React.FC = () => {
 			{/* <DraggableDivider onDrag={handleDrag} /> */}
 			{/* Right Side: Capsule List */}
 			<Suspense fallback={<div>Loading...</div>}>
-				<div className="w-1/3 overflow-y-scroll text-xs flex flex-wrap gap-3 select-none">
+				<div
+					className={`w-1/3 overflow-y-scroll text-xs flex flex-wrap gap-3 select-none`}
+				>
 					{palettes.length > 0 &&
 						palettes.map((item, index) => (
 							<Capsule
@@ -127,7 +129,7 @@ const Page: React.FC = () => {
 							/>
 						))}
 				</div>
-			</Suspense>
+			</Suspense>	
 		</div>
 	);
 };
