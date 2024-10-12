@@ -20,7 +20,7 @@ export default function Error({
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex flex-grow items-center justify-center h-screen">
       <div className="text-center">
         <h2 className="text-lg mb-4">Sorry, something went wrong!</h2>
         <button 

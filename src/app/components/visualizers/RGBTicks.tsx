@@ -97,7 +97,7 @@ const RGBTicks: React.FC<RGBTicksProps> = ({ filter = [] }) => {
 	}, [data, filter]);
 
 	return (
-		<div className="flex w-full border-red-600">
+		<div className="min-h-24 flex w-full border-red-600">
 			{<div ref={containerRef} />}
 		</div>
 	);

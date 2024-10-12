@@ -14,8 +14,9 @@ const Page: React.FC = () => {
 	const [palettes, setPalettes] = useState<Palette[]>([]);
 	const [activePalettes, setActivePalettes] = useState<number[]>([]);
 	const [rightWidth, setRightWidth] = useState<number>(3); // Initial width for the right div in pixels
-	const [showChart, setShowChart] = useState<boolean>(true); // State for visibility
+	const [showChart, setShowChart] = useState<boolean>(false); // State for visibility
 	const [activeCapsules, setActiveCapsules] = useState<string[]>([]); // State to hold active capsule names
+	const [cubeGridView, setCubeGridView] = useState<'isometric' | 'top' | 'left' | 'front'>('isometric'); // State for cube grid view
 
 	useEffect(() => {
 		const loadColorThemes = async () => {
@@ -64,6 +65,11 @@ const Page: React.FC = () => {
 		setShowChart((prev) => !prev);
 	};
 
+	const toggleView = (view: 'isometric' | 'top' | 'left' | 'front') => {
+		console.log(`Toggling view to ${view}`);
+		setCubeGridView(view); // Set the cubeGridView based on the argument
+	};
+
 	return (
 		<div
 			className="flex w-full overflow-hidden"
@@ -80,11 +86,11 @@ const Page: React.FC = () => {
 							size={0.1}
 							palettes={palettes}
 							on={activePalettes}
-							view="isometric"
+							view={cubeGridView} // Use the cubeGridView state
 						/>
 					</Suspense>
 					<div className="absolute bottom-0 left-0 m-4">
-						<Toolbar toggleChart={toggleChart} showChart={showChart} />
+						<Toolbar toggleChart={toggleChart} showChart={showChart} toggleView={toggleView} />
 					</div>
 				</div>
 				{/* Second Row: Three RGBCubeGrids with different views */}

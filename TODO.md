@@ -1,8 +1,11 @@
-// DONE: Allow users to type in keywords to generate a color palette
-// DONE: Gracefully handle errors when the json is not valid.
-// TODO: Add a radial tree visualizer: https://observablehq.com/@d3/radial-tree/2?intent=fork
-// TODO: loading status when waiting for the LLM response
-// TODO: Add "Settings" section to the app: Allow users to select their language model, temperature, top_k, and top_p.
-// TODO: Add "Stats" section to the app that visualizes performance metrics for each model.
-// - Add a "keywords" text input to the ColorPaletteVisualizer component to allow the user to input keywords to generate a color palette
-// - Pass "temperature", "top_k", and "top_p" as parameters to the get-colors.js script   
+- DONE: Allow users to type in keywords to generate a color palette
+- DONE: Gracefully handle errors when the json is not valid.
+- TODO: Animate between views: ref (NOTE: it is NOT working!): https://blog.promaton.com/camera-animations-with-r3f-and-react-spring-6fd378296c46
+
+- TODO: Add a color palette (gradient) bar to the chart at the bottom so that it displays the selected color palette.
+- TODO: Add a radial tree visualizer: https://observablehq.com/@d3/radial-tree/2?intent=fork
+- TODO: loading status when waiting for the LLM response
+- TODO: Add "Settings" section to the app: Allow users to select their language model, temperature, top_k, and top_p.
+- TODO: Add "Stats" section to the app that visualizes performance metrics for each model.
+- TODO: Add a "keywords" text input to the ColorPaletteVisualizer component to allow the user to input keywords to generate a color palette
+- // - Pass "temperature", "top_k", and "top_p" as parameters to the get-colors.js script   

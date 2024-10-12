@@ -142,44 +142,58 @@ const PaletteCubes: React.FC<PaletteCubesProps> = ({
 		</group>
 	);
 };
-function TopViewCamera() {
-	const { camera } = useThree();
-  
-	// Set the camera position above the scene looking down
-	camera.position.set(0, 20, 0); 
-	camera.rotation.set(-Math.PI / 2, 0, 0);
-  
-	return null;
-  }
-// A color palette is an array of colors with a name, each color is represented as a hex string
-// The distance is approximately 255/10
-const RGBCubeGrid: React.FC<RGBCubesProps> = ({ palettes, on = [], distance = 26, view = 'isometric' }) => {
-	// Determine camera position based on the view prop
-	const getCameraPosition = () => {
-		switch (view) {
-			case 'isometric':
-				return [distance * 1, distance * 1, distance * 1];
-			case 'top':
-				return [0, distance * 1, 0];
-			case 'left':
-				return [-distance * 1, distance * 1, 0];
-			case 'front':
-				return [0, distance * 1, -distance * 1];
-			default:
-				return [distance * 1, distance * 1, distance * 1]; // Default to isometric
-		}
+
+const CameraController: React.FC<{ view: 'isometric' | 'top' | 'left' | 'front'; distance: number }> = ({ view, distance }) => {
+	const { camera } = useThree(); // Access the camera from the context
+	const camera_initial_position = new THREE.Vector3(0, 0, distance); // Define initial camera position
+	const camera_initial_target = new THREE.Vector3(0, 0, 0); // Define initial target
+
+	const resetCamera = () => {
+		camera.position.set(camera_initial_position.x, camera_initial_position.y, camera_initial_position.z);
+		camera.lookAt(camera_initial_target); // Ensure the camera looks at the initial target
 	};
 
-	const cameraPosition = getCameraPosition();
+	useEffect(() => {
+		// Reset camera position and rotation whenever the view changes
+		switch (view) {
+			case 'top':
+				resetCamera();
+				camera.position.set(0, distance * 1, 0);
+				camera.rotation.set(-Math.PI / 2, 0, 0); // Looking straight down
+				break;
+			case 'left':
+				resetCamera();
+				camera.position.set(-distance * 1, 0, 0);
+				camera.rotation.set(0, Math.PI / 2, 0); // Looking from the left
+				break;
+			case 'front':
+				resetCamera();
+				camera.position.set(0, 0, distance * 1);
+				camera.rotation.set(0, Math.PI, 0); // Looking from the front
+				break;
+			case 'isometric':
+			default:
+				// resetCamera();
+				camera.position.set(distance * 1, distance * 1, distance * 1);
+				camera.rotation.set(-Math.PI / 4, Math.PI / 4, 0); // Isometric view
+		}
+		camera.updateProjectionMatrix(); // Update the camera projection matrix
+	}, [view, distance, camera]); // Include camera in the dependency array
+
+	return null; // This component does not render anything
+};
+
+const RGBCubeGrid: React.FC<RGBCubesProps> = ({ palettes, on = [], distance = 26, view = 'isometric' }) => {
+	const camera_initial_target = new THREE.Vector3(0, 0, 0); // Define the camera target here
 
 	return (
 		<Canvas gl={{ antialias: false }} orthographic={true} camera={{
-			position: [cameraPosition[0], cameraPosition[1], cameraPosition[2]], // Ensure it's a tuple of three numbers
-			
 			near: 0.1,
 			far: 1000,
 			zoom: 16,
 		}} >
+			<CameraController view={view} distance={distance} />
+			{true && <OrbitControls enableRotate={view === 'isometric'} target={camera_initial_target} />} {/* Pass target prop */}
 			{palettes.map((palette, paletteIndex) => {
 				if (!palette || !Array.isArray(palette.colors)) {
 					// error?
@@ -208,7 +222,6 @@ const RGBCubeGrid: React.FC<RGBCubesProps> = ({ palettes, on = [], distance = 26
 				}
 			})}
 			<axesHelper args={[distance]} />
-			<OrbitControls />
 			{/* <Stats /> */}
 		</Canvas>
 	);
@@ -239,7 +252,7 @@ ro					<boxGeometry args={[1, 1, 1]} />
 			</group>
 			<axesHelper args={[distance]} />
 			{/* <perspectiveCamera ref={cameraRef} fov={75} near={0.1} far={1000} /> */}
-			<OrbitControls />
+			{/* <OrbitControls enablePan={false} /> */}
 		</Canvas>
 	);
 }
