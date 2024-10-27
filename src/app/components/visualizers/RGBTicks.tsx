@@ -8,22 +8,45 @@ interface RGBTicksProps {
 	filter?: string[]; // Make filter prop optional
 }
 
+interface Color {
+	name: string;
+	colors: string[];
+}
+interface ColorWithName {
+	name: string;
+	color: string;
+}
+
 const RGBTicks: React.FC<RGBTicksProps> = ({ filter = [] }) => {
 	const containerRef = useRef<HTMLDivElement | null>(null); // Ensure the ref is typed correctly
+	const [rawData, setRawData] = useState<ColorWithName[]>([]);
+
 	const [data, setData] = useState<
 		{ paletteName: string; channel: string; value: number }[]
 	>([]);
 
 	const lowerRange = 125; // Define the lower range variable
+	const colorSpectrum = d3.range(360).map((d) => "hsl(" + d + ",100%,60%)"); // The "hue" in hsl ranges from 0 to 360.
 
 	// Create a linear scale
 	const colorScale = scaleLinear()
 		.domain([0, 255]) // Input domain
 		.range([lowerRange, 255]); // Output range
 
+	function transformArray(data: Color[]): ColorWithName[] {  // Add return type
+		return d3.merge(
+			data.map((item) =>
+				Array.isArray(item.colors)
+					? item.colors.map((color) => ({ name: item.name, color: color }))
+					: []
+			)
+		) as ColorWithName[];  // Add type assertion
+	}
+
 	useEffect(() => {
 		d3.json("/chroma_ai.themes.json").then((data: any) => {
-			// console.log("data:", data);
+			console.log("raw data:", data);
+			setRawData(transformArray(data));
 			const transformed = transformThemes(data);
 			setData(transformed);
 		});
@@ -38,57 +61,77 @@ const RGBTicks: React.FC<RGBTicksProps> = ({ filter = [] }) => {
 			filter.length > 0
 				? data.filter((item) => filter.includes(item.paletteName))
 				: data;
+
+		const filteredNamedData = filter.length > 0 
+		? rawData.filter(d => filter.includes(d.name))
+		: rawData
+		// console.log("filteredData:", filteredData);
+		// console.log("data:::::::\n", data);
 		// Source: https://observablehq.com/plot/features/transforms
 		const plot = Plot.plot({
-			marginLeft: 40,
-			marginRight: 10,
-			width: 1200,
-			// style: {
-			// 	backgroundColor: "#888888",
-			// },
-			x: { label: "R/G/B values" },
-			y: { label: null },
-			marks: [
-				// Plot.ruleX([0]),
-				Plot.tickX(filteredData, {
-					x: "value",
-					y: "channel",
-					stroke: "#888888",
-					// stroke: (d) =>
-					// 	d.channel === "r"
-					// 		? `rgb(${colorScale(d.value)}, 0, 0)` // Red channel
-					// 		: d.channel === "g"
-					// 		? `rgb(0, ${colorScale(d.value)}, 0)` // Green channel
-					// 		: d.channel === "b"
-					// 		? `rgb(0, 0, ${colorScale(d.value)})` // Blue channel
-					// 		: "white", // Default color
-					strokeOpacity: 1,
-				}),
-				Plot.tickX(
-					filteredData,
-					Plot.groupY(
-						{ x: "median" },
-						{
-							x: "value",
-							y: "channel",
-							stroke: (d) =>
-								d.channel === "r"
-									? "rgba(255, 0, 0, 1)"
-									: d.channel === "g"
-									? "rgba(0, 255, 0, 1)"
-									: d.channel === "b"
-									? "rgba(0, 0, 255, 1)"
-									: "white", // Conditional stroke color
-							strokeWidth: 4,
-							// sort: { y: "x" },
-						}
-					)
-				),
-				// Plot.axisX({ label: null, lineWidth: 8, marginBottom: 40 }),
-				// Plot.axisY({ label: "R/G/B values" }),
-				// Plot.ruleY([0])
-			],
-		});
+      marginLeft: 40,
+      marginRight: 10,
+      width: 1600,
+	//   height: 160,
+      // style: {
+      // 	backgroundColor: "#888888",
+      // },
+      // x: { label: "R/G/B values" },
+      x: { 
+        domain: [0, 360],  // Add this to match the colorSpectrum range
+        label: null,
+        axis: false
+      },
+      y: { domain: ["hue", " ", "r", "g", "b"], label: null },
+      // TODO: Add axes: top for hue [0, 360] and bottom for RGB [0, 255]
+      marks: [
+        // Plot.ruleX([0]),
+        Plot.tickX(filteredData, {
+          x: d => d.value * (360/255),  // Scale RGB values (0-255) to match hue range (0-360)
+          y: "channel",
+          stroke: "#888888",
+          strokeOpacity: 1,
+        }),
+        Plot.tickX(
+          filteredData,
+          Plot.groupY(
+            { x: "median" },
+            {
+              x: d => d.value * (360/255),  // Scale here too
+              y: "channel",
+              stroke: (d) =>
+                d.channel === "r"
+                  ? "rgba(255, 0, 0, 1)"
+                  : d.channel === "g"
+                  ? "rgba(0, 255, 0, 1)"
+                  : d.channel === "b"
+                  ? "rgba(0, 0, 255, 1)"
+                  : "white",
+              strokeWidth: 4,
+            }
+          )
+        ),
+        // Color wheel/bar chart
+        Plot.tickX(colorSpectrum, {
+          x: Plot.indexOf,
+          y: d => "hue",
+          // stroke: (d) => d3.color(d)?.toString(),
+          stroke: Plot.identity,
+          // strokeWidth: 2
+        }),
+        Plot.dot(
+          // Filter rawData based on active capsules
+          filteredNamedData, 
+          {
+            x: (d) => d3.hsl(d.color).h,
+            y: d => " ",
+            fill: (d) => d3.color(d.color)?.toString(),
+            fillOpacity: (d) =>
+              d3.scalePow([1, 600], [1, 0.2]).exponent(1)(filteredNamedData.length),
+          }
+        ),
+      ],
+    });
 
 		if (containerRef.current) {
 			containerRef.current.append(plot);

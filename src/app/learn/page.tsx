@@ -73,14 +73,12 @@ const Page: React.FC = () => {
 	return (
 		<div
 			className="flex w-full overflow-hidden"
-			style={{ height: `calc(100vh - 80px)` }}
+			style={{ height: "90vh" }}
 		>
 			{/* TODO: Make this full height without -120px workaround. */}
 			{/* Left Side: RGBCubeGrids */}
 			<div className="flex grow flex-col relative">
-				{/* Ensure this takes available space */}
 				<div className="flex grow relative">
-					{/* This div will grow to take available space */}
 					<Suspense fallback={<div>Loading...</div>}>
 						<RGBCubeGrid
 							size={0.1}
@@ -89,7 +87,7 @@ const Page: React.FC = () => {
 							view={cubeGridView} // Use the cubeGridView state
 						/>
 					</Suspense>
-					<div className="absolute bottom-0 left-0 m-4">
+					<div className="absolute bottom-0 left-0 m-8">
 						<Toolbar toggleChart={toggleChart} showChart={showChart} toggleView={toggleView} />
 					</div>
 				</div>
@@ -119,11 +117,12 @@ const Page: React.FC = () => {
 					</div>
 				</div>
 			</div>
+			{/* TODO: Draggable divider */}
 			{/* Draggable Divider */}
 			{/* <DraggableDivider onDrag={handleDrag} /> */}
 			{/* Right Side: Capsule List */}
 			<Suspense fallback={<div>Loading...</div>}>
-				<div className="w-1/3 overflow-y-scroll text-xs flex flex-wrap gap-3 select-none">
+				<div className="h-screen overflow-y-auto text-xs flex flex-wrap gap-3 select-none w-[700px]">
 					{palettes.length > 0 &&
 						palettes.map((item, index) => (
 							<Capsule

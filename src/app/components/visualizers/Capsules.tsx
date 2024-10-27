@@ -18,16 +18,14 @@ const Capsule: React.FC<CapsuleProps> = ({ label, onClick }) => {
 	return (
 		<div 
 			onClick={handleClick} 
-			className={`border-2 rounded-lg px-4 py-1 cursor-pointer font-semibold ${isActive ? 'border-blue-500 bg-blue-100 dark:bg-blue-900' : 'border-gray-300 dark:border-gray-700'}`}
-		>
-			{label}
-		</div>
+			className={`border-2 rounded-lg px-4 py-1 cursor-pointer font-semibold leading-none ${isActive ? 'border-blue-500 bg-blue-100 dark:bg-blue-900' : 'border-gray-300 dark:border-gray-700'}`}
+		>{label}</div>
 	);
 };
-
+// TODO: FIXME: In Chrome, the card has extra padding on the bottom.
 const Capsules = ({ labels, borderColor = "black", backgroundColor = "white", borderWidth = 1 }: { labels: string[]; borderColor?: string; backgroundColor?: string, borderWidth?: number }) => {
 	return (
-		<div className="flex flex-wrap gap-3 select-none"> {/* Add select-none class */}
+		<div className="flex flex-wrap gap-3 select-none items-center justify-start">
 			{labels.map((label, index) => (
 				<Capsule key={index} label={label} borderColor={borderColor} borderWidth={borderWidth} />
 			))}

@@ -12,12 +12,12 @@ const spaceMono = Space_Mono(
     subsets: ['latin'],
     weight: ['400', '700'],
     style: ['normal', 'italic'],
-    display: "swap",
+    display: "auto",
   }
 )
 
 export const metadata: Metadata = siteMetadata;
-
+// BUG: FIXME: The font is not loading on the first page load.
 export default function RootLayout({
   children,
 }: Readonly<{

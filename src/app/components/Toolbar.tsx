@@ -24,23 +24,36 @@ const Toolbar: React.FC<ToolbarProps> = ({
 }) => {
 	return (
 		<div className="flex flex-row justify-between gap-4 bg-gray-900 text-white p-2 rounded-lg">
-			<button onClick={() => toggleView("isometric")}>
-				{/* <RiLayoutGridLine /> */}
+			<button 
+				onClick={() => toggleView("isometric")} 
+				title="Isometric View"
+			>
 				<RiBox3Line />
 			</button>
-			<button onClick={() => toggleView("top")}>
+			<button 
+				onClick={() => toggleView("top")}
+				title="Top View"
+			>
 				<TbBoxAlignTop /> {/* Top */}
 			</button>
-			<button onClick={() => toggleView("left")}>
+			<button 
+				onClick={() => toggleView("left")}
+				title="Left View"
+			>
 				<TbBoxAlignLeft />
 				{/* Left */}
 			</button>
-			<button onClick={() => toggleView("front")}>
+			<button 
+				onClick={() => toggleView("front")}
+				title="Front View"
+			>
 				<TbBoxMargin />
 				{/* Front */}
 			</button>
-			<button onClick={toggleChart}>
-				{/* Call the toggle function */}
+			<button 
+				onClick={toggleChart}
+				title="Toggle Chart"
+			>
 				<RiBarChartLine /> {/* Icon for Charts */}
 				{/* Show text based on visibility */}
 				{/* {showRGBGroupedBars ? 'Hide Chart' : 'Show Chart'} */}
