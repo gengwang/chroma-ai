@@ -145,9 +145,9 @@ async function genColorTheme(keyword: string = "Star Trek", model: string | null
     }
 }
 
-export async function redirectToTheme(formData: FormData) {
+export async function redirectToTheme(formData: FormData, delay = 0) {
     const formattedThemeName = slugFromName(formData.get("keyword") as string);
-    await new Promise(resolve => setTimeout(resolve, 0));
+    await new Promise(resolve => setTimeout(resolve, delay));
     redirect(`/theme/${formattedThemeName}`);
 }
 
