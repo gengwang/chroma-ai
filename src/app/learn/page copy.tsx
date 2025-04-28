@@ -16,6 +16,7 @@ const Page: React.FC = () => {
 	const [rightWidth, setRightWidth] = useState<number>(3); // Initial width for the right div in pixels
 	const [showChart, setShowChart] = useState<boolean>(true); // State for visibility
 	const [activeCapsules, setActiveCapsules] = useState<string[]>([]); // State to hold active capsule names
+	const [cubeGridView, setCubeGridView] = useState<'isometric' | 'top' | 'left' | 'front'>('isometric'); // State for cube grid view
 
 	useEffect(() => {
 		const loadColorThemes = async () => {
@@ -64,6 +65,10 @@ const Page: React.FC = () => {
 		setShowChart((prev) => !prev);
 	};
 
+	const toggleView = (view: 'isometric' | 'top' | 'left' | 'front') => {
+		setCubeGridView(view);
+	};
+
 	return (
 		<div className="flex w-full h-[calc(100%-120px)] overflow-hidden bg-white dark:bg-gray-900 text-black dark:text-white">
 			{" "}
@@ -75,12 +80,12 @@ const Page: React.FC = () => {
 				<div className="flex grow relative">
 					{" "}
 					{/* This div will grow to take available space */}
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<div>Generating...</div>}>
 						<RGBCubeGrid
 							size={0.1}
 							palettes={palettes}
 							on={activePalettes}
-							view="isometric"
+							view={cubeGridView}
 						/>
 					</Suspense>
 					<div className="absolute bottom-0 left-0 m-4">
@@ -89,13 +94,14 @@ const Page: React.FC = () => {
 						<Toolbar
 							toggleChart={toggleChart}
 							showChart={showChart} // Pass the visibility state
+							toggleView={toggleView}
 						/>{" "}
 						{/* Pass the toggle function */}
 					</div>
 				</div>
 				{/* Second Row: Three RGBCubeGrids with different views */}
 				<div className="flex flex-row w-full border-orange-300">
-					{showChart && <Suspense fallback={<div>Loading...</div>}>
+					{showChart && <Suspense fallback={<div>Generating...</div>}>
 						<RGBTicks filter={activeCapsules} />
 					</Suspense>}
 					{/* Pass activeCapsules as filter */}
@@ -116,7 +122,7 @@ const Page: React.FC = () => {
 			{/* Draggable Divider */}
 			{/* <DraggableDivider onDrag={handleDrag} /> */}
 			{/* Right Side: Capsule List */}
-			<Suspense fallback={<div>Loading...</div>}>
+			<Suspense fallback={<div>Generating...</div>}>
 				<div
 					className={`w-1/3 overflow-y-scroll text-xs flex flex-wrap gap-3 select-none`}
 				>

@@ -39,11 +39,13 @@ export function getContrastColor(hexColor: string) {
 
 export function hexToRgb(hex: string) {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-    } : null;
+    if (!result) return null;
+    
+    const r = parseInt(result[1], 16);
+    const g = parseInt(result[2], 16);
+    const b = parseInt(result[3], 16);
+    
+    return { r, g, b };
 }
 
 export function hexToHSL(hex: string) {
@@ -51,9 +53,9 @@ export function hexToHSL(hex: string) {
     hex = hex.replace(/^#/, '');
 
     // Parse r, g, b values
-    let r = parseInt(hex.substring(0, 2), 16) / 255;
-    let g = parseInt(hex.substring(2, 4), 16) / 255;
-    let b = parseInt(hex.substring(4, 6), 16) / 255;
+    const r = parseInt(hex.substring(0, 2), 16) / 255;
+    const g = parseInt(hex.substring(2, 4), 16) / 255;
+    const b = parseInt(hex.substring(4, 6), 16) / 255;
 
     // Find the maximum and minimum values of r, g, b
     const max = Math.max(r, g, b);

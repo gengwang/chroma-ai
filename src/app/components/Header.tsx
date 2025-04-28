@@ -55,6 +55,8 @@ const Header = () => {
 						{(siteMetadata?.description as string) || ""}
 					</p>
 				</div>
+                {/* TMP. hide for now. */}
+                {false && 
 				<div className="flex space-x-4"> {/* Container for buttons */}
 					<button 
 						onClick={() => router.push('/')} 
@@ -81,7 +83,7 @@ const Header = () => {
 						)}
 						<span>Theme</span> {/* Button text */}
 					</button>}
-				</div>
+				</div>}
 			</div>
 		);
 }

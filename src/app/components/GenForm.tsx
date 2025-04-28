@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { useFormStatus } from "react-dom";
-import fetchColorThemes from "../api/get-colors3";
+import fetchColorThemes, { getMockColorThemes, redirectToTheme } from "../api/get-colors3";
+import { Theme } from "../api/types";
 
 // Initial state for the form
 const initialState = {
@@ -11,7 +12,7 @@ const initialState = {
 
 const GenForm = () => {
     const [keyword, setKeyword] = useState(""); // State for the keyword input
-    const [state, setState] = useState(initialState); // State for the form message
+    const [stateMesssage, setStateMessage] = useState(initialState); // State for the form message
     const { pending } = useFormStatus(); // Get the form status
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -23,11 +24,14 @@ const GenForm = () => {
 
         // Call the fetchColorThemes function with the FormData object
         try {
-            const response = await fetchColorThemes(formData); // Pass the FormData object
-            setState({ message: response.message }); // Update state with the response message
+            const mockTheme = await redirectToTheme(formData); // Pass the FormData object
+            // const response = await fetchColorThemes(formData); // Pass the FormData object
+            // setState({ message: response.message }); // Update state with the response message
+            setStateMessage({ message: "Generating..." }); // Update state with the response message
+            // console.log("mockTheme", mockTheme);
         } catch (error) {
             console.error("Error fetching color themes:", error);
-            setState({ message: "Failed to generate color themes." });
+            setStateMessage({ message: "Failed to generate color themes." });
         }
     };
 
@@ -54,13 +58,13 @@ const GenForm = () => {
                         autoFocus
                         placeholder="e.g., Sunset Vibes"
                         required
-                        className="dark:bg-gray-800 dark:text-white py-1 px-2.5 border border-gray-600 rounded mr-4 w-96"
+                        className="bg-white text-black dark:bg-gray-800 dark:text-white py-1 px-2.5 border border-gray-600 rounded mr-4 w-96"
                     />
                 </div>
                 <SubmitButton pending={pending} /> {/* Pass pending state to SubmitButton */}
             </form>
             {/* Display message if needed */}
-            {state.message && <p>{state.message}</p>}
+            {stateMesssage.message && <p>{stateMesssage.message}</p>}
         </>
     );
 };

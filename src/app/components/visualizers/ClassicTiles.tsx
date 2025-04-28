@@ -33,7 +33,7 @@ const ClassicTiles: React.FC<ClassicTilesProps> = ({ theme }) => {
 												style={{
 													backgroundColor: color,
 													color: getContrastColor(color),
-													transform: palette.name.startsWith('Error:') ? `rotate(${-90 + colorIndex * 15}deg)` : 'none', // Apply rotation only if palette name starts with "Error:"
+													transform: palette.name?.startsWith('Error:') ? `rotate(${-90 + colorIndex * 15}deg)` : 'none', // Add optional chaining
 												}}
 											>
 												{/* {color} */}

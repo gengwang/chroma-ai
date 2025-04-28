@@ -148,32 +148,23 @@ const CameraController: React.FC<{ view: 'isometric' | 'top' | 'left' | 'front';
 	const camera_initial_position = new THREE.Vector3(0, 0, distance); // Define initial camera position
 	const camera_initial_target = new THREE.Vector3(0, 0, 0); // Define initial target
 
-	const resetCamera = () => {
-		camera.position.set(camera_initial_position.x, camera_initial_position.y, camera_initial_position.z);
-		camera.lookAt(camera_initial_target); // Ensure the camera looks at the initial target
-	};
-
 	useEffect(() => {
 		// Reset camera position and rotation whenever the view changes
 		switch (view) {
 			case 'top':
-				resetCamera();
 				camera.position.set(0, distance * 1, 0);
 				camera.rotation.set(-Math.PI / 2, 0, 0); // Looking straight down
 				break;
 			case 'left':
-				resetCamera();
 				camera.position.set(-distance * 1, 0, 0);
 				camera.rotation.set(0, Math.PI / 2, 0); // Looking from the left
 				break;
 			case 'front':
-				resetCamera();
 				camera.position.set(0, 0, distance * 1);
 				camera.rotation.set(0, Math.PI, 0); // Looking from the front
 				break;
 			case 'isometric':
 			default:
-				// resetCamera();
 				camera.position.set(distance * 1, distance * 1, distance * 1);
 				camera.rotation.set(-Math.PI / 4, Math.PI / 4, 0); // Isometric view
 		}

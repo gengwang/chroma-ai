@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ColorPalette } from '@/app/api/types';
 import * as Plot from "@observablehq/plot";
 // import {tree, cluster} from 'd3';
@@ -38,7 +38,9 @@ const Tree: React.FC<TreeProps> = ({ colorPalettes, keyword }) => {
     // console.log("treeData", treeData);
     // console.log("transformedTreeData", transformedTreeData);
     
-    React.useEffect(() => {
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
         const div = document.querySelector("#myplot");
         if (div) {
             // Clear previous content
@@ -67,23 +69,26 @@ const Tree: React.FC<TreeProps> = ({ colorPalettes, keyword }) => {
                 ]
             });
 
-            div.appendChild(plot);
-        }
-
-        // Cleanup function
-        return () => {
-            if (div) {
-                div.innerHTML = '';
+            if (containerRef.current) {
+                containerRef.current.append(plot);
             }
-        };
-    }, [colorPalettes, keyword]);
+
+            // Cleanup function
+            return () => {
+                if (div) {
+                    div.innerHTML = '';
+                }
+                plot.remove();
+            };
+        }
+    }, [transformedTreeData]);
 
     /* function update(event: any, source: any) {
     }
     update(null, null); */
 
     return (
-        <div id="myplot"></div>
+        <div id="myplot" ref={containerRef}></div>
     );
 };
 

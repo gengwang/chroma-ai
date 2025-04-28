@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
 		<html lang="en" className={spaceMono.className}>
 			<body className="antialiased h-screen">
-				<div className="flex flex-col min-h-screen">
+				<div className="flex flex-col min-h-screen mx-auto max-w-7xl">
 					<div className="flex-0">
 						<Header />
 					</div>

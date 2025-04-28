@@ -79,7 +79,7 @@ const Page: React.FC = () => {
 			{/* Left Side: RGBCubeGrids */}
 			<div className="flex grow flex-col relative">
 				<div className="flex grow relative">
-					<Suspense fallback={<div>Loading...</div>}>
+					<Suspense fallback={<div>Generating...</div>}>
 						<RGBCubeGrid
 							size={0.1}
 							palettes={palettes}
@@ -98,7 +98,7 @@ const Page: React.FC = () => {
 					}`}
 				>
 					{true && (
-						<Suspense fallback={<div>Loading...</div>}>
+						<Suspense fallback={<div>Generating...</div>}>
 							<RGBTicks filter={activeCapsules} />
 						</Suspense>
 					)}
@@ -121,7 +121,7 @@ const Page: React.FC = () => {
 			{/* Draggable Divider */}
 			{/* <DraggableDivider onDrag={handleDrag} /> */}
 			{/* Right Side: Capsule List */}
-			<Suspense fallback={<div>Loading...</div>}>
+			<Suspense fallback={<div>Generating...</div>}>
 				<div className="h-screen overflow-y-auto text-xs flex flex-wrap gap-3 select-none w-[700px]">
 					{palettes.length > 0 &&
 						palettes.map((item, index) => (

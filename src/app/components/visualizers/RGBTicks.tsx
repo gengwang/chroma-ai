@@ -17,6 +17,13 @@ interface ColorWithName {
 	color: string;
 }
 
+interface ColorData {
+	r: number;
+	g: number;
+	b: number;
+	name: string;
+}
+
 const RGBTicks: React.FC<RGBTicksProps> = ({ filter = [] }) => {
 	const containerRef = useRef<HTMLDivElement | null>(null); // Ensure the ref is typed correctly
 	const [rawData, setRawData] = useState<ColorWithName[]>([]);
@@ -44,11 +51,13 @@ const RGBTicks: React.FC<RGBTicksProps> = ({ filter = [] }) => {
 	}
 
 	useEffect(() => {
-		d3.json("/chroma_ai.themes.json").then((data: any) => {
+		d3.json<Color[]>("/chroma_ai.themes.json").then((data) => {
 			console.log("raw data:", data);
-			setRawData(transformArray(data));
-			const transformed = transformThemes(data);
-			setData(transformed);
+			if (data) {
+				setRawData(transformArray(data));
+				const transformed = transformThemes(data);
+				setData(transformed);
+			}
 		});
 	}, []);
 
@@ -137,7 +146,7 @@ const RGBTicks: React.FC<RGBTicksProps> = ({ filter = [] }) => {
 			containerRef.current.append(plot);
 		}
 		return () => plot.remove();
-	}, [data, filter]);
+	}, [data, filter, colorSpectrum, rawData]);
 
 	return (
 		<div className="min-h-24 flex w-full border-red-600">

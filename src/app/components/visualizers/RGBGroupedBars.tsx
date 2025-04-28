@@ -3,8 +3,16 @@ import * as Plot from "@observablehq/plot";
 import { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 
+interface ColorData {
+	r: number;
+	g: number;
+	b: number;
+	name: string;
+	colors: string[];
+}
+
 interface RGBGroupedBarsProps {
-    filter?: string[]; // Make filter prop optional
+	filter?: string[]; // Make filter prop optional
 }
 
 const RGBGroupedBars: React.FC<RGBGroupedBarsProps> = ({ filter = [] }) => { // Default to an empty array
@@ -14,16 +22,17 @@ const RGBGroupedBars: React.FC<RGBGroupedBarsProps> = ({ filter = [] }) => { // 
 	>([]);
 
 	useEffect(() => {
-		d3.json("/chroma_ai.themes.json").then((data: any) => {
-			// console.log("data:", data);
-			const transformed = transformThemes(data);
-			setData(transformed);
+		d3.json<ColorData[]>("/chroma_ai.themes.json").then((data) => {
+			if (data) {
+				const transformed = transformThemes(data);
+				setData(transformed);
+			}
 		});
 	}, []);
 
 	useEffect(() => {
 		if (data == undefined) return;
-        if(filter == undefined) return;
+		if(filter == undefined) return;
 
 		// Apply filtering based on the filter prop
 		const filteredData = filter.length > 0 
@@ -39,7 +48,7 @@ const RGBGroupedBars: React.FC<RGBGroupedBarsProps> = ({ filter = [] }) => { // 
 				// Use RGBA colors for 50% opacity
 				domain: ['r', 'g', 'b'],
 				// range: ['rgba(255, 0, 0, 0.5)', 'rgba(0, 255, 0, 0.5)', 'rgba(0, 0, 255, 0.5)'],
-                range: ['#f24b39', '#62be62', '#0c77c1'],
+				range: ['#f24b39', '#62be62', '#0c77c1'],
 				legend: false 
 			},
 			marks: [
