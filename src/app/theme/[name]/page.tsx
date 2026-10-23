@@ -3,7 +3,12 @@ import { Theme } from "@/app/api/types";
 import ClassicTiles from "@/app/components/visualizers/ClassicTiles";
 import React from "react";
 
-export default async function Page({ params }: { params: { name: string } }) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ name: string }>;
+}) {
+  const { name } = await params;
 
     // see if we can get theme by this name from db, if yes, display it here
     // if not, go generate one and persist it to the db
@@ -12,7 +17,7 @@ export default async function Page({ params }: { params: { name: string } }) {
     //DEBUG
     // await new Promise(resolve => setTimeout(resolve, 2000));
     try {
-        result = await getColorThemesByName(params.name);
+        result = await getColorThemesByName(name);
     } catch (error) {
         console.error('Error fetching color palettes:', error);
     }
